@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.models;
+
+import com.twu.biblioteca.helpers.MenuTypes;
 
 public class MenuItem {
     private String name;

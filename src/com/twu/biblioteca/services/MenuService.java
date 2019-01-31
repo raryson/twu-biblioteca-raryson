@@ -1,10 +1,15 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.services;
+
+import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
+import com.twu.biblioteca.helpers.MenuTypes;
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.models.MenuItem;
 
 import java.util.ArrayList;
 
-public class Menu {
+public class MenuService {
 
-    public Menu() {
+    public MenuService() {
         MenuItem exitItem = new MenuItem("Exit", MenuTypes.EXIT, 0);
         MenuItem listOfBookItem = new MenuItem("List All Books", MenuTypes.LISTOFBOOKS, 1);
         menuList.add(exitItem);

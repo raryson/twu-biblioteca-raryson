@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.helpers;
+
+import com.twu.biblioteca.helpers.MenuTypes;
 
 public class EnumParser {
     public static MenuTypes intToEnum(int menuChoosed){

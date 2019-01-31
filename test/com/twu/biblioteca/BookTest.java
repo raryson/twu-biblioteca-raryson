@@ -1,6 +1,9 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.models.Book;
+import com.twu.biblioteca.services.BookService;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,8 +1,4 @@
-package com.twu.biblioteca;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+package com.twu.biblioteca.models;
 
 public class Book {
 
