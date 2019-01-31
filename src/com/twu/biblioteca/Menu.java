@@ -27,7 +27,7 @@ public class Menu {
 
             case EXIT: {
                 System.out.println(Messages.triggeredExit());
-                System.exit(12);
+                System.exit(0);
                 break;
             }
 
