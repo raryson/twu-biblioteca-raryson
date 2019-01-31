@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.services.BookService;
@@ -45,10 +46,12 @@ public class BookTest {
     public void whenBookAreBeCheckouted() {
         final String bookNameAreBeChecked = "1984";
         ArrayList<Book> books = new ArrayList<Book>();
-        Book book2 = new Book("Harry Potter", "J.K Rolling", "07/01/2006");
+        Book book2 = new Book("Harry Potter", "J.K Rolling", "07/01/2006",
+                                BookStatus.AVAILABLE);
         books.add(book2);
 
-        Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016");
+        Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016",
+                                BookStatus.AVAILABLE);
         books.add(book3);
 
         BookService bookService = new BookService();
