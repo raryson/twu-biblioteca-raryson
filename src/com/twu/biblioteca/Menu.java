@@ -14,4 +14,14 @@ public class Menu {
     public ArrayList<MenuItem> getMenuList() {
         return this.menuList;
     }
+
+    public boolean triggerActionItem(String triggeredOption) {
+        for(MenuItem item : menuList) {
+            if(item.getOption().equals(triggeredOption)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
