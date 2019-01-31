@@ -6,11 +6,25 @@ import java.util.List;
 
 public class Book {
 
-    private final String booksResourcesArray[] = { "1984", "Harry Potter", "Matrix" };
-    private List<String> booksList = Arrays.asList(booksResourcesArray);
-
-    public List<String> getAllBooks(){
-        return this.booksList;
+    public Book(String name, String author, String publishDate){
+        this.name = name;
+        this.author = author;
+        this.publishDate = publishDate;
     }
 
+    private String author;
+    private String publishDate;
+    private String name;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getPublishDate() {
+        return publishDate;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

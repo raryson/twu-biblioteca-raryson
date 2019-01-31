@@ -6,18 +6,25 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class BookTest {
 
     @Test
-    public void WhenUserNeedToViewAllBooks() {
-        ArrayList<String> stubBookList = new ArrayList<String>();
-        stubBookList.add("1984");
-        stubBookList.add("Harry Potter");
-        stubBookList.add("Matrix");
+    public void WhenUserNeedToViewBooks() {
+        BookService bookService = new BookService();
+        final ArrayList<Book> allBooks = bookService.getAllBooks();
+        assertNotNull(bookService.getAllBooks());
+    }
 
-        Book book = new Book();
+    @Test
+    public void WhenUserNeedToViewAllBooksWithAuthorsAndPublishYearAndName() {
+        BookService bookService = new BookService();
+        for(Book book : bookService.getAllBooks()) {
+            assertNotNull(book.getName());
+            assertNotNull(book.getAuthor());
+            assertNotNull(book.getPublishDate());
+        }
 
-        assertEquals(book.getAllBooks(), stubBookList);
     }
 }
