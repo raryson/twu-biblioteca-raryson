@@ -5,17 +5,35 @@ import com.twu.biblioteca.models.Book;
 import java.util.ArrayList;
 
 public class BookService {
-    public ArrayList<Book> getAllBooks() {
-        ArrayList<Book> bookResources = new ArrayList<Book>();
+    public BookService(){
         Book book1 = new Book("1984", "George Orwell", "07/01/1996");
-        bookResources.add(book1);
+        this.books.add(book1);
 
         Book book2 = new Book("Harry Potter", "J.K Rolling", "07/01/2006");
-        bookResources.add(book2);
+        this.books.add(book2);
 
         Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016");
-        bookResources.add(book3);
+        this.books.add(book3);
 
-        return bookResources;
+    }
+
+    private ArrayList<Book> books = new ArrayList<Book>();
+
+    public ArrayList<Book> getAllBooks() {
+        return this.books;
     };
+
+    private Book findABookByName(String name){
+        for(Book iteredBook : books){
+            if(iteredBook.getName().equals(name))
+                return iteredBook;
+
+        }
+        return null;
+    }
+
+    public void checkoutABook(String bookName){
+        Book searchedBook =  findABookByName(bookName);
+        books.remove(searchedBook);
+    }
 }

@@ -40,4 +40,23 @@ public class BookTest {
         BookService bookService = new BookService();
         assertEquals(expectedBooksMessage, Messages.booksInfosMessage(bookService.getAllBooks()));
     }
+
+    @Test
+    public void whenBookAreBeCheckouted() {
+        final String bookNameAreBeChecked = "1984";
+        ArrayList<Book> books = new ArrayList<Book>();
+        Book book2 = new Book("Harry Potter", "J.K Rolling", "07/01/2006");
+        books.add(book2);
+
+        Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016");
+        books.add(book3);
+
+        BookService bookService = new BookService();
+        bookService.checkoutABook("1984");
+        int counter = 0;
+        for(Book resourcesBook: bookService.getAllBooks()){
+            assertEquals(books.get(counter).getName(), resourcesBook.getName());
+            counter++;
+        }
+    }
 }
