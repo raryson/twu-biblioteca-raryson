@@ -29,12 +29,12 @@ public class BookTest {
 
     @Test
     public void whenBooksAreShowedOnScreen() {
-        final String booksMessage = "\tBook Name\tAuthor\tPublish Date\n" +
+        final String expectedBooksMessage = "\tBook Name\tAuthor\tPublish Date\n" +
                                     "\t1984\tGeorge Orwell\t07/01/1996\n" +
                                     "\tHarry Potter\tJ.K Rolling\t07/01/2006\n" +
                                     "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n";
 
         BookService bookService = new BookService();
-        assertEquals(Messages.booksInfosMessage(bookService.getAllBooks()), booksMessage);
+        assertEquals(Messages.booksInfosMessage(bookService.getAllBooks()), expectedBooksMessage);
     }
 }

@@ -17,5 +17,12 @@ public class MenuTest {
         }
     }
 
+    @Test
+    public void whenMenuAreShowedOnScreen() {
+        final String expectedMenuMessage = "\t1 - List All Books";
+        Menu menu = new Menu();
+        assertEquals(Messages.menuInfoMessage(menu.getMenuList()), expectedMenuMessage);
+    }
+
 
 }

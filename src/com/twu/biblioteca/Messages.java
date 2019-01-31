@@ -16,4 +16,12 @@ public class Messages {
         return booksMessage;
     }
 
+    public static String menuInfoMessage(ArrayList<MenuItem> menuItens){
+        String menuMessage = "";
+        for(MenuItem itens : menuItens){
+            menuMessage += "\t" + itens.getOption() + " - " + itens.getName();
+        }
+        return menuMessage;
+    }
+
 }
