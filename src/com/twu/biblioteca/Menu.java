@@ -17,13 +17,24 @@ public class Menu {
         return this.menuList;
     }
 
-    public boolean triggerActionItem(MenuTypes triggeredOption) {
-        for(MenuItem item : menuList) {
-            if(item.getOption().equals(triggeredOption)) {
-                return true;
+    public void triggerActionItem(MenuTypes triggeredOption) throws ItemOnMenuNotFoundException {
+        switch(triggeredOption) {
+            case LISTOFBOOKS: {
+                BookService bookService = new BookService();
+                System.out.println(Messages.booksInfosMessage(bookService.getAllBooks()));
+                break;
+            }
+
+            case EXIT: {
+                System.out.println(Messages.triggeredExit());
+                System.exit(12);
+                break;
+            }
+
+            case MISSCLICK: {
+                throw new ItemOnMenuNotFoundException();
             }
         }
-        return false;
     }
 
 }

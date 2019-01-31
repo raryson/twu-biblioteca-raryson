@@ -9,10 +9,11 @@ public class BibliotecaApp {
         Menu menu = new Menu();
         Scanner userInput = new Scanner(System.in);
         System.out.println(Messages.menuInfoMessage(menu.getMenuList()));
-        if(!menu.triggerActionItem(EnumParser.intToEnum(userInput.nextInt()))){
+        try {
+            MenuTypes menuType = EnumParser.intToEnum(userInput.nextInt());
+            menu.triggerActionItem(menuType);
+        } catch (ItemOnMenuNotFoundException e) {
             System.out.println(Messages.triggeredInvalidMenu());
         }
-        BookService bookService = new BookService();
-        System.out.println(Messages.booksInfosMessage(bookService.getAllBooks()));
     }
 }

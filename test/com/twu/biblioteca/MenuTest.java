@@ -2,6 +2,8 @@ package com.twu.biblioteca;
 
 
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runners.JUnit4;
 
 import static org.junit.Assert.*;
 
@@ -23,17 +25,14 @@ public class MenuTest {
         assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menu.getMenuList()));
     }
 
-
-    @Test
-    public void whenUserSelectAValidMenuItem(){
-        Menu menu = new Menu();
-        assertTrue(menu.triggerActionItem(menu.getMenuList().get(0).getOption()));
-    }
-
     @Test
     public void whenUserSelectAInvalidMenuItem(){
         Menu menu = new Menu();
-        assertFalse(menu.triggerActionItem(null));
+        try {
+            menu.triggerActionItem(MenuTypes.MISSCLICK);
+        } catch (ItemOnMenuNotFoundException e) {
+            assertNotNull(e);
+        }
     }
 
     @Test
