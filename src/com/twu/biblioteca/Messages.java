@@ -19,13 +19,17 @@ public class Messages {
     public static String menuInfoMessage(ArrayList<MenuItem> menuItens){
         String menuMessage = "Please, select one of this options:\n";
         for(MenuItem itens : menuItens){
-            menuMessage += "\t" + itens.getOption() + " - " + itens.getName();
+            menuMessage += "\t" + itens.getNumber() + " - " + itens.getName();
         }
         return menuMessage;
     }
 
     public static String triggeredInvalidMenu(){
         return "Sorry, invalid menu input, try again please!";
+    }
+
+    public static String triggeredExit(){
+        return "Bye bye";
     }
 
 }

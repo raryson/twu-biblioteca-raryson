@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class Menu {
 
     public Menu() {
-        MenuItem listOfBookItem = new MenuItem("List All Books", "1");
+        MenuItem exitItem = new MenuItem("Exit", MenuTypes.EXIT, 0);
+        MenuItem listOfBookItem = new MenuItem("List All Books", MenuTypes.LISTOFBOOKS, 1);
+        menuList.add(exitItem);
         menuList.add(listOfBookItem);
     }
 
@@ -15,7 +17,7 @@ public class Menu {
         return this.menuList;
     }
 
-    public boolean triggerActionItem(String triggeredOption) {
+    public boolean triggerActionItem(MenuTypes triggeredOption) {
         for(MenuItem item : menuList) {
             if(item.getOption().equals(triggeredOption)) {
                 return true;

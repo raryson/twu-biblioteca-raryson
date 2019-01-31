@@ -35,6 +35,6 @@ public class BookTest {
                                     "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n";
 
         BookService bookService = new BookService();
-        assertEquals(Messages.booksInfosMessage(bookService.getAllBooks()), expectedBooksMessage);
+        assertEquals(expectedBooksMessage, Messages.booksInfosMessage(bookService.getAllBooks()));
     }
 }

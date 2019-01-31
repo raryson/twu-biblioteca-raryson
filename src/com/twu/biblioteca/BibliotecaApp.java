@@ -9,7 +9,7 @@ public class BibliotecaApp {
         Menu menu = new Menu();
         Scanner userInput = new Scanner(System.in);
         System.out.println(Messages.menuInfoMessage(menu.getMenuList()));
-        if(!menu.triggerActionItem(userInput.nextLine())){
+        if(!menu.triggerActionItem(EnumParser.intToEnum(userInput.nextInt()))){
             System.out.println(Messages.triggeredInvalidMenu());
         }
         BookService bookService = new BookService();

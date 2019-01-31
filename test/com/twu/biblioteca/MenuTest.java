@@ -18,9 +18,9 @@ public class MenuTest {
 
     @Test
     public void whenMenuAreShowedOnScreen() {
-        final String expectedMenuMessage = "Please, select one of this options:\n\t1 - List All Books";
+        final String expectedMenuMessage = "Please, select one of this options:\n\t0 - Exit\t1 - List All Books";
         Menu menu = new Menu();
-        assertEquals(Messages.menuInfoMessage(menu.getMenuList()), expectedMenuMessage);
+        assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menu.getMenuList()));
     }
 
 
@@ -33,7 +33,7 @@ public class MenuTest {
     @Test
     public void whenUserSelectAInvalidMenuItem(){
         Menu menu = new Menu();
-        assertFalse(menu.triggerActionItem("666"));
+        assertFalse(menu.triggerActionItem(null));
     }
 
     @Test
@@ -41,4 +41,11 @@ public class MenuTest {
         final String expectedMessage = "Sorry, invalid menu input, try again please!";
         assertEquals(expectedMessage, Messages.triggeredInvalidMenu());
     }
+
+    @Test
+    public void whenUserTriggerExitEvent() {
+        final String expectedMessage = "Bye bye";
+        assertEquals(expectedMessage, Messages.triggeredExit());
+    }
+
 }

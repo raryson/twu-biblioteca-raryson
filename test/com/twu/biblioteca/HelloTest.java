@@ -11,6 +11,6 @@ public class HelloTest {
     public void WhenUserEnterInApplication() {
         final String expectedHelloMessage = "Welcome to Biblioteca." +
                 " Your one-stop-shop for great book title in Bangalore!";
-        assertEquals(Messages.helloMessage(), expectedHelloMessage);
+        assertEquals(expectedHelloMessage, Messages.helloMessage());
     }
 }
