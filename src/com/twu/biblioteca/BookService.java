@@ -11,7 +11,7 @@ public class BookService {
         Book book2 = new Book("Harry Potter", "J.K Rolling", "07/01/2006");
         bookResources.add(book2);
 
-        Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2006");
+        Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016");
         bookResources.add(book3);
 
         return bookResources;
