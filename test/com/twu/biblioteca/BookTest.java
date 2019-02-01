@@ -11,6 +11,7 @@ import com.twu.biblioteca.services.BookService;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +20,7 @@ public class BookTest {
     @Test
     public void whenUserNeedToViewBooks() {
         BookService bookService = new BookService();
-        final ArrayList<Book> allBooks = bookService.getAllBooks();
+        final List<Book> allBooks = bookService.getAllBooks();
         assertNotNull(bookService.getAllBooks());
     }
 
@@ -38,8 +39,7 @@ public class BookTest {
         final String expectedBooksMessage = "\tBook Name\tAuthor\tPublish Date\n" +
                                     "\t1984\tGeorge Orwell\t07/01/1996\n" +
                                     "\tHarry Potter\tJ.K Rolling\t07/01/2006\n" +
-                                    "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n" +
-                                    "\tThe Battle of the Apocalipse\tEduardo Sphor\t07/01/2026\n";
+                                    "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n";
 
         BookService bookService = new BookService();
         assertEquals(expectedBooksMessage, Messages.booksInfosMessage(bookService.getAllBooks()));

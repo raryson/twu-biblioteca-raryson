@@ -5,8 +5,10 @@ import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.models.Book;
-
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class BookService {
     public BookService(){
@@ -27,10 +29,12 @@ public class BookService {
 
     }
 
-    private ArrayList<Book> books = new ArrayList<Book>();
+    private List<Book> books = new ArrayList<>();
 
-    public ArrayList<Book> getAllBooks() {
-        return this.books;
+    public List<Book> getAllBooks() {
+        List<Book> filteredBooks = books.stream().filter(p -> p.getStatus().equals(BookStatus.AVAILABLE))
+                .collect(Collectors.toList());
+        return filteredBooks;
     };
 
     private Book findABookByName(String name){

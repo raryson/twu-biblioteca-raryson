@@ -6,6 +6,7 @@ import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.services.BookService;
 import com.twu.biblioteca.services.MenuService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -18,13 +19,17 @@ public class BibliotecaApp {
         while(true){
             try {
                 System.out.println(Messages.menuInfoMessage(menuService.getMenuList()));
-
+                int readedInt = userInput.nextInt();
                 menuService.triggerActionItem(
-                        MenuTypes.valueOf(userInput.nextInt()).orElse(MenuTypes.MISSCLICK),
+                        MenuTypes.valueOf(readedInt).orElse(MenuTypes.MISSCLICK),
                         userInput,
                         bookService);
 
             } catch (ItemOnMenuNotFoundException e) {
+                userInput.nextLine();
+                System.out.println(Messages.triggeredInvalidMenu());
+            } catch (InputMismatchException ex) {
+                userInput.nextLine();
                 System.out.println(Messages.triggeredInvalidMenu());
             }
         }
