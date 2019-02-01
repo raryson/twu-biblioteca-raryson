@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.exceptions.BookAreCheckinedException;
 import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
@@ -37,7 +38,8 @@ public class BookTest {
         final String expectedBooksMessage = "\tBook Name\tAuthor\tPublish Date\n" +
                                     "\t1984\tGeorge Orwell\t07/01/1996\n" +
                                     "\tHarry Potter\tJ.K Rolling\t07/01/2006\n" +
-                                    "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n";
+                                    "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n" +
+                                    "\tThe Battle of the Apocalipse\tEduardo Sphor\t07/01/2026\n";
 
         BookService bookService = new BookService();
         assertEquals(expectedBooksMessage, Messages.booksInfosMessage(bookService.getAllBooks()));
@@ -57,13 +59,51 @@ public class BookTest {
     }
 
     @Test
-    public void whenABookSelectedNotExist() {
+    public void whenABookSelectedNotExistInCheckout() {
         BookService bookService = new BookService();
         try {
             bookService.checkoutABook("The ruleglessias Chronicals");
         } catch (BookNotFoundException ex) {
             assertNotNull(ex);
         } catch (BookAreCheckoutedException ex) {
+            assertNull(ex);
+        }
+    }
+
+    @Test
+    public void whenABookSelectedNotExistInCheckin() {
+        BookService bookService = new BookService();
+        try {
+            bookService.checkingABook("The ruleglessias Chronicals");
+        } catch (BookNotFoundException ex) {
+            assertNotNull(ex);
+        } catch (BookAreCheckinedException ex) {
+            assertNull(ex);
+        }
+    }
+
+    @Test
+    public void whenBookAreCheckined() {
+        BookService bookService = new BookService();
+        try {
+            bookService.checkingABook("The Battle of the Apocalipse");
+            assertEquals(BookStatus.AVAILABLE, bookService.checkBookStatus("The Battle of the Apocalipse"));
+        } catch (BookAreCheckinedException ex){
+            assertNull(ex);
+        } catch (BookNotFoundException ex) {
+            assertNull(ex);
+        }
+    }
+
+    @Test
+    public void whenBookAreCheckouinedCheckedBook() {
+        BookService bookService = new BookService();
+        try {
+            bookService.checkingABook("1984");
+            bookService.checkingABook("1984");
+        } catch (BookAreCheckinedException ex){
+            assertNotNull(ex);
+        } catch (BookNotFoundException ex) {
             assertNull(ex);
         }
     }

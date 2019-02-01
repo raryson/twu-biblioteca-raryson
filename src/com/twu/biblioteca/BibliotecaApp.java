@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
-import com.twu.biblioteca.helpers.EnumParser;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.services.BookService;
@@ -19,8 +18,12 @@ public class BibliotecaApp {
         while(true){
             try {
                 System.out.println(Messages.menuInfoMessage(menuService.getMenuList()));
-                MenuTypes menuType = EnumParser.intToEnum(userInput.nextInt());
-                menuService.triggerActionItem(menuType, userInput, bookService);
+
+                menuService.triggerActionItem(
+                        MenuTypes.valueOf(userInput.nextInt()).orElse(null),
+                        userInput,
+                        bookService);
+
             } catch (ItemOnMenuNotFoundException e) {
                 System.out.println(Messages.triggeredInvalidMenu());
             }

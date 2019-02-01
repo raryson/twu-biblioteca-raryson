@@ -1,9 +1,9 @@
 package com.twu.biblioteca.services;
 
+import com.twu.biblioteca.exceptions.BookAreCheckinedException;
 import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
-import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.models.Book;
 
 import java.util.ArrayList;
@@ -20,6 +20,10 @@ public class BookService {
         Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016",
                                 BookStatus.AVAILABLE);
         this.books.add(book3);
+
+        Book book4 = new Book("The Battle of the Apocalipse", "Eduardo Sphor", "07/01/2026",
+                BookStatus.RENTED);
+        this.books.add(book4);
 
     }
 
@@ -48,6 +52,19 @@ public class BookService {
         }
         this.books.remove(searchedBook);
         searchedBook.setStatus(BookStatus.RENTED);
+        this.books.add(searchedBook);
+    }
+
+    public void checkingABook(String bookName) throws BookAreCheckinedException, BookNotFoundException {
+        Book searchedBook =  findABookByName(bookName);
+        if (searchedBook == null) {
+            throw new BookNotFoundException();
+        }
+        if(searchedBook.getStatus().equals(BookStatus.AVAILABLE)) {
+            throw new BookAreCheckinedException();
+        }
+        this.books.remove(searchedBook);
+        searchedBook.setStatus(BookStatus.AVAILABLE);
         this.books.add(searchedBook);
     }
 
