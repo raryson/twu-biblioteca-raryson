@@ -27,6 +27,12 @@ public class Messages {
         return menuMessage;
     }
 
+    public static String checkoutedABookNotExist() { return "Sorry, this book dont exist, try again"; }
+
+    public static String checkoutedABookSucesseful() { return "Thank you! Enjoy the book"; }
+
+    public static String checkoutedABookFailed(){ return "Sorry, that book is not available"; }
+
     public static String triggeredInvalidMenu(){
         return "Sorry, invalid menu input, try again please!";
     }

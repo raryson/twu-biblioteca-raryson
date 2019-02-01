@@ -57,7 +57,7 @@ public class BookTest {
     }
 
     @Test
-    public void whenABookSelectedNotExit() {
+    public void whenABookSelectedNotExist() {
         BookService bookService = new BookService();
         try {
             bookService.checkoutABook("The ruleglessias Chronicals");
@@ -79,6 +79,23 @@ public class BookTest {
         } catch (BookNotFoundException ex) {
             assertNull(ex);
         }
+    }
 
+    @Test
+    public void whenABookAreCheckoutedMessage() {
+        final String expectedResult = "Thank you! Enjoy the book";
+        assertEquals(expectedResult, Messages.checkoutedABookSucesseful());
+    }
+
+    @Test
+    public void whenABookCannotBeCheckoutMessage() {
+        final String expectedResult = "Sorry, that book is not available";
+        assertEquals(expectedResult, Messages.checkoutedABookFailed());
+    }
+
+    @Test
+    public void whenABookNotFoundMessage() {
+        final String expectedResult = "Sorry, this book dont exist, try again";
+        assertEquals(expectedResult, Messages.checkoutedABookNotExist());
     }
 }
