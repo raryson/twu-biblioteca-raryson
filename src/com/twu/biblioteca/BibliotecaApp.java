@@ -20,7 +20,7 @@ public class BibliotecaApp {
                 System.out.println(Messages.menuInfoMessage(menuService.getMenuList()));
 
                 menuService.triggerActionItem(
-                        MenuTypes.valueOf(userInput.nextInt()).orElse(null),
+                        MenuTypes.valueOf(userInput.nextInt()).orElse(MenuTypes.MISSCLICK),
                         userInput,
                         bookService);
 

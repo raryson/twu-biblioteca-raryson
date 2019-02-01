@@ -136,6 +136,24 @@ public class BookTest {
     @Test
     public void whenABookNotFoundMessage() {
         final String expectedResult = "Sorry, this book dont exist, try again";
-        assertEquals(expectedResult, Messages.checkoutedABookNotExist());
+        assertEquals(expectedResult, Messages.bookNotExist());
+    }
+
+    @Test
+    public void whenABookCheckingEnteredOnMenuMessage() {
+        final String expectedResult = "Please, enter to name of your book to checkin";
+        assertEquals(expectedResult, Messages.enterYourBookToCheckin());
+    }
+
+    @Test
+    public void whenABookCheckingHasFailed() {
+        final String expectedResult = "Thats is not a valid book to return!";
+        assertEquals(expectedResult, Messages.checkinABookFailed());
+    }
+
+    @Test
+    public void whenABookCheckinHasSucesseful() {
+        final String expectedResult =  "Thank you to returning the book";
+        assertEquals(expectedResult, Messages.checkinedBookSucesseful());
     }
 }

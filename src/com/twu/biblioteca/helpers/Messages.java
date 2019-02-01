@@ -29,11 +29,17 @@ public class Messages {
 
     public static String enterYourBookToCheckout() { return "Enter with a book name to checkout"; }
 
-    public static String checkoutedABookNotExist() { return "Sorry, this book dont exist, try again"; }
+    public static String bookNotExist() { return "Sorry, this book dont exist, try again"; }
 
     public static String checkoutedABookSucesseful() { return "Thank you! Enjoy the book"; }
 
+    public static String checkinABookFailed() { return "Thats is not a valid book to return!"; }
+
     public static String checkoutedABookFailed(){ return "Sorry, that book is not available"; }
+
+    public static String checkinedBookSucesseful() { return "Thank you to returning the book"; }
+
+    public static String enterYourBookToCheckin() { return "Please, enter to name of your book to checkin"; }
 
     public static String triggeredInvalidMenu(){
         return "Sorry, invalid menu input, try again please!";

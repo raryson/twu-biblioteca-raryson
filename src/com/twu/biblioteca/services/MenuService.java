@@ -1,5 +1,6 @@
 package com.twu.biblioteca.services;
 
+import com.twu.biblioteca.exceptions.BookAreCheckinedException;
 import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
@@ -16,9 +17,12 @@ public class MenuService {
         MenuItem exitItem = new MenuItem("Exit", MenuTypes.EXIT, 0);
         MenuItem listOfBookItem = new MenuItem("List All Books", MenuTypes.LISTOFBOOKS, 1);
         MenuItem checkoutABookItem = new MenuItem("Checkout a Book", MenuTypes.CHECKOUTABOOK, 2);
+        MenuItem checkingABook = new MenuItem("Checking a Book", MenuTypes.CHECKIGNABOOK, 3);
+
         menuList.add(exitItem);
         menuList.add(listOfBookItem);
         menuList.add(checkoutABookItem);
+        menuList.add(checkingABook);
     }
 
     private ArrayList<MenuItem> menuList = new ArrayList();
@@ -47,9 +51,29 @@ public class MenuService {
                     bookService.checkoutABook(userInput.nextLine());
                 } catch (BookAreCheckoutedException ex) {
                     System.out.println(Messages.checkoutedABookFailed());
+                    break;
                 } catch (BookNotFoundException ex) {
-                    System.out.println(Messages.checkoutedABookNotExist());
+                    System.out.println(Messages.bookNotExist());
+                    break;
                 }
+                System.out.println(Messages.checkoutedABookSucesseful());
+                break;
+            }
+
+            case CHECKIGNABOOK: {
+                System.out.println(Messages.enterYourBookToCheckin());
+                try {
+                    userInput.nextLine();
+                    bookService.checkingABook(userInput.nextLine());
+                } catch (BookAreCheckinedException ex) {
+                    System.out.println(Messages.checkinABookFailed());
+                    break;
+                } catch (BookNotFoundException ex) {
+                    System.out.println(Messages.bookNotExist());
+                    break;
+
+                }
+                System.out.println(Messages.checkinedBookSucesseful());
                 break;
             }
 
