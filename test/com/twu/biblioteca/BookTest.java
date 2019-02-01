@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
+import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.models.Book;
@@ -9,8 +11,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class BookTest {
 
@@ -44,22 +45,40 @@ public class BookTest {
 
     @Test
     public void whenBookAreBeCheckouted() {
-        final String bookNameAreBeChecked = "1984";
-        ArrayList<Book> books = new ArrayList<Book>();
-        Book book2 = new Book("Harry Potter", "J.K Rolling", "07/01/2006",
-                                BookStatus.AVAILABLE);
-        books.add(book2);
-
-        Book book3 = new Book("Matrix", "Lana Wachowski and Lilly Wachowski", "07/01/2016",
-                                BookStatus.AVAILABLE);
-        books.add(book3);
-
         BookService bookService = new BookService();
-        bookService.checkoutABook("1984");
-        int counter = 0;
-        for(Book resourcesBook: bookService.getAllBooks()){
-            assertEquals(books.get(counter).getName(), resourcesBook.getName());
-            counter++;
+        try {
+            bookService.checkoutABook("1984");
+        } catch (BookAreCheckoutedException e) {
+            assertNotNull(e);
+        } catch (BookNotFoundException e) {
+            assertNotNull(e);
         }
+        assertEquals(BookStatus.RENTED, bookService.checkBookStatus("1984"));
+    }
+
+    @Test
+    public void whenABookSelectedNotExit() {
+        BookService bookService = new BookService();
+        try {
+            bookService.checkoutABook("The ruleglessias Chronicals");
+        } catch (BookNotFoundException ex) {
+            assertNotNull(ex);
+        } catch (BookAreCheckoutedException ex) {
+            assertNull(ex);
+        }
+    }
+
+    @Test
+    public void whenBookAreCheckoutedCheckedBook() {
+        BookService bookService = new BookService();
+        try {
+            bookService.checkoutABook("1984");
+            bookService.checkoutABook("1984");
+        } catch (BookAreCheckoutedException ex){
+            assertNotNull(ex);
+        } catch (BookNotFoundException ex) {
+            assertNull(ex);
+        }
+
     }
 }

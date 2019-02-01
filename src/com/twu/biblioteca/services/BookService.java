@@ -1,5 +1,7 @@
 package com.twu.biblioteca.services;
 
+import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
+import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.models.Book;
 
@@ -35,8 +37,18 @@ public class BookService {
         return null;
     }
 
-    public void checkoutABook(String bookName){
+    public void checkoutABook(String bookName) throws BookAreCheckoutedException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
-        books.remove(searchedBook);
+        if (searchedBook == null) {
+            throw new BookNotFoundException();
+        }
+        if(searchedBook.getStatus() == BookStatus.RENTED) {
+            throw new BookAreCheckoutedException();
+        }
+        searchedBook.setStatus(BookStatus.RENTED);
+    }
+
+    public BookStatus checkBookStatus(String bookName){
+        return findABookByName(bookName).getStatus();
     }
 }

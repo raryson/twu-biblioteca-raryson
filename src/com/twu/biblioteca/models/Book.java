@@ -31,4 +31,8 @@ public class Book {
     public BookStatus getStatus() {
         return status;
     }
+
+    public void setStatus(BookStatus status) {
+        this.status = status;
+    }
 }
