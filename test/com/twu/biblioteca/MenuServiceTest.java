@@ -23,7 +23,8 @@ public class MenuServiceTest {
 
     @Test
     public void whenMenuAreShowedOnScreen() {
-        final String expectedMenuMessage = "Please, select one of this options:\n\t0 - Exit\t1 - List All Books";
+        final String expectedMenuMessage = "Please, select one of this options:\n\t0 - Exit\t1 - List All Books" +
+                "\t2 - Checkout a Book";
         MenuService menuService = new MenuService();
         assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menuService.getMenuList()));
     }
@@ -32,7 +33,7 @@ public class MenuServiceTest {
     public void whenUserSelectAInvalidMenuItem(){
         MenuService menuService = new MenuService();
         try {
-            menuService.triggerActionItem(MenuTypes.MISSCLICK);
+            menuService.triggerActionItem(MenuTypes.MISSCLICK, null, null);
         } catch (ItemOnMenuNotFoundException e) {
             assertNotNull(e);
         }
@@ -48,6 +49,12 @@ public class MenuServiceTest {
     public void whenUserTriggerExitEvent() {
         final String expectedMessage = "Bye bye";
         assertEquals(expectedMessage, Messages.triggeredExit());
+    }
+
+    @Test
+    public void whenUserSelectCheckoutABook() {
+        final String expectedMessage = "Enter with a book name to checkout";
+        assertEquals(expectedMessage, Messages.enterYourBookToCheckout());
     }
 
 }

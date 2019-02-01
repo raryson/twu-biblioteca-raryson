@@ -43,10 +43,12 @@ public class BookService {
         if (searchedBook == null) {
             throw new BookNotFoundException();
         }
-        if(searchedBook.getStatus() == BookStatus.RENTED) {
+        if(searchedBook.getStatus().equals(BookStatus.RENTED)) {
             throw new BookAreCheckoutedException();
         }
+        this.books.remove(searchedBook);
         searchedBook.setStatus(BookStatus.RENTED);
+        this.books.add(searchedBook);
     }
 
     public BookStatus checkBookStatus(String bookName){

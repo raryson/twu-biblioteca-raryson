@@ -27,6 +27,8 @@ public class Messages {
         return menuMessage;
     }
 
+    public static String enterYourBookToCheckout() { return "Enter with a book name to checkout"; }
+
     public static String checkoutedABookNotExist() { return "Sorry, this book dont exist, try again"; }
 
     public static String checkoutedABookSucesseful() { return "Thank you! Enjoy the book"; }
