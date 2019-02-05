@@ -7,6 +7,7 @@ import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.models.Book;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -38,12 +39,8 @@ public class BookService {
     };
 
     private Book findABookByName(String name){
-        for(Book iteredBook : books){
-            if(iteredBook.getName().equals(name))
-                return iteredBook;
-
-        }
-        return null;
+        Optional<Book> iteredBook = books.stream().filter(book -> book.getName().equals(name)).findFirst();
+        return iteredBook.orElse(null);
     }
 
     public void checkoutABook(String bookName) throws BookAreCheckoutedException, BookNotFoundException {
