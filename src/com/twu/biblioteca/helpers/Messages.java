@@ -15,7 +15,7 @@ public class Messages {
     public static String booksInfosMessage(List<Book> booksList){
         String booksMessage = "\tBook Name\tAuthor\tPublish Date\n";
         for(Book book : booksList){
-            booksMessage += "\t"+book.getName()+"\t"+book.getAuthor()+"\t"+book.getPublishDate()+"\n";
+            booksMessage += String.format("\t%s\t%s\t%s\n", book.getName(), book.getAuthor(), book.getPublishDate());
         }
         return booksMessage;
     }
@@ -23,7 +23,7 @@ public class Messages {
     public static String menuInfoMessage(ArrayList<MenuItem> menuItens){
         String menuMessage = "Please, select one of this options:\n";
         for(MenuItem itens : menuItens){
-            menuMessage += "\t" + itens.getNumber() + " - " + itens.getName();
+            menuMessage += String.format("\t%s - %s", itens.getNumber(), itens.getName());
         }
         return menuMessage;
     }
