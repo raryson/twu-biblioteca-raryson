@@ -21,16 +21,20 @@ public class BookTest {
     public void whenUserNeedToViewBooks() {
         BookService bookService = new BookService();
         final List<Book> allBooks = bookService.getAllBooks();
-        assertNotNull(bookService.getAllBooks());
+        assertNotNull(allBooks);
     }
 
     @Test
     public void whenUserNeedToViewAllBooksWithAuthorsAndPublishYearAndName() {
         BookService bookService = new BookService();
         for(Book book : bookService.getAllBooks()) {
-            assertNotNull(book.getName());
-            assertNotNull(book.getAuthor());
-            assertNotNull(book.getPublishDate());
+            String bookName = book.getName();
+            String bookAuthor = book.getAuthor();
+            String bookPublishDate = book.getPublishDate();
+
+            assertNotNull(bookName);
+            assertNotNull(bookAuthor);
+            assertNotNull(bookPublishDate);
         }
     }
 
@@ -55,7 +59,9 @@ public class BookTest {
         } catch (BookNotFoundException e) {
             assertNotNull(e);
         }
-        assertEquals(BookStatus.RENTED, bookService.checkBookStatus("1984"));
+
+        BookStatus bookStatus = bookService.checkBookStatus("1984");
+        assertEquals(BookStatus.RENTED, bookStatus);
     }
 
     @Test
@@ -87,7 +93,8 @@ public class BookTest {
         BookService bookService = new BookService();
         try {
             bookService.checkingABook("The Battle of the Apocalipse");
-            assertEquals(BookStatus.AVAILABLE, bookService.checkBookStatus("The Battle of the Apocalipse"));
+            BookStatus bookStatus = bookService.checkBookStatus("The Battle of the Apocalipse");
+            assertEquals(BookStatus.AVAILABLE, bookStatus);
         } catch (BookAreCheckinedException ex){
             assertNull(ex);
         } catch (BookNotFoundException ex) {

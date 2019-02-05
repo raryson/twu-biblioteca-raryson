@@ -16,8 +16,10 @@ public class MenuServiceTest {
     public void whenUserNeedToViewMenu() {
         MenuService menuService = new MenuService();
         for(MenuItem menuItem : menuService.getMenuList()){
-            assertNotNull(menuItem.getName());
-            assertNotNull(menuItem.getOption());
+            String menuItemItered = menuItem.getName();
+            MenuTypes menuTypeItered = menuItem.getOption();
+            assertNotNull(menuItemItered);
+            assertNotNull(menuTypeItered);
         }
     }
 
