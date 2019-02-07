@@ -6,6 +6,7 @@ import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.services.BookService;
 import org.junit.Test;
@@ -19,14 +20,16 @@ public class BookServiceTest {
 
     @Test
     public void whenUserNeedToViewBooks() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         final List<Book> allBooks = bookService.getAllBooks();
         assertNotNull(allBooks);
     }
 
     @Test
     public void whenUserNeedToViewAllBooksWithAuthorsAndPublishYearAndName() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         for(Book book : bookService.getAllBooks()) {
             String bookName = book.getName();
             String bookAuthor = book.getAuthor();
@@ -45,13 +48,15 @@ public class BookServiceTest {
                                     "\tHarry Potter\tJ.K Rolling\t07/01/2006\n" +
                                     "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n";
 
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         assertEquals(expectedBooksMessage, Messages.booksInfosMessage(bookService.getAllBooks()));
     }
 
     @Test
     public void whenBookAreBeCheckouted() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkoutABook("1984");
         } catch (BookAreCheckoutedException e) {
@@ -66,7 +71,8 @@ public class BookServiceTest {
 
     @Test
     public void whenABookSelectedNotExistInCheckout() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkoutABook("The ruleglessias Chronicals");
         } catch (BookNotFoundException ex) {
@@ -78,7 +84,8 @@ public class BookServiceTest {
 
     @Test
     public void whenABookSelectedNotExistInCheckin() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkingABook("The ruleglessias Chronicals");
         } catch (BookNotFoundException ex) {
@@ -90,7 +97,8 @@ public class BookServiceTest {
 
     @Test
     public void whenBookAreCheckined() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkingABook("The Battle of the Apocalipse");
             BookStatus bookStatus = bookService.checkBookStatus("The Battle of the Apocalipse");
@@ -104,7 +112,8 @@ public class BookServiceTest {
 
     @Test
     public void whenBookAreCheckouinedCheckedBook() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkingABook("1984");
             bookService.checkingABook("1984");
@@ -117,7 +126,8 @@ public class BookServiceTest {
 
     @Test
     public void whenBookAreCheckoutedCheckedBook() {
-        BookService bookService = new BookService();
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkoutABook("1984");
             bookService.checkoutABook("1984");

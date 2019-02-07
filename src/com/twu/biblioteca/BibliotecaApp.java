@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.services.BookService;
 import com.twu.biblioteca.services.MenuService;
 
@@ -13,8 +14,9 @@ public class BibliotecaApp {
 
     public static void main(String[] args) {
         System.out.println(Messages.helloMessage());
+        BookData.generateLibrary();
         MenuService menuService = new MenuService();
-        BookService bookService = new BookService();
+        BookService bookService = new BookService(BookData.books);
         Scanner userInput = new Scanner(System.in);
         while(true){
             try {
