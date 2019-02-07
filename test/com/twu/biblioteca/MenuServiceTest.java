@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
+import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.models.MenuItem;
@@ -36,7 +36,7 @@ public class MenuServiceTest {
         MenuService menuService = new MenuService();
         try {
             menuService.triggerActionItem(MenuTypes.MISSCLICK, null, null);
-        } catch (ItemOnMenuNotFoundException e) {
+        } catch (MenuItemNotFoundException e) {
             assertNotNull(e);
         }
     }

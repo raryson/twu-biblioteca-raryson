@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
 
-import com.twu.biblioteca.exceptions.BookAreCheckinedException;
-import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
+import com.twu.biblioteca.exceptions.BookCheckinException;
+import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.helpers.Messages;
@@ -11,7 +11,6 @@ import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.services.BookService;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -59,7 +58,7 @@ public class BookServiceTest {
         BookService bookService = new BookService(BookData.books);
         try {
             bookService.checkoutABook("1984");
-        } catch (BookAreCheckoutedException e) {
+        } catch (BookCheckoutException e) {
             assertNotNull(e);
         } catch (BookNotFoundException e) {
             assertNotNull(e);
@@ -77,7 +76,7 @@ public class BookServiceTest {
             bookService.checkoutABook("The ruleglessias Chronicals");
         } catch (BookNotFoundException ex) {
             assertNotNull(ex);
-        } catch (BookAreCheckoutedException ex) {
+        } catch (BookCheckoutException ex) {
             assertNull(ex);
         }
     }
@@ -90,7 +89,7 @@ public class BookServiceTest {
             bookService.checkingABook("The ruleglessias Chronicals");
         } catch (BookNotFoundException ex) {
             assertNotNull(ex);
-        } catch (BookAreCheckinedException ex) {
+        } catch (BookCheckinException ex) {
             assertNull(ex);
         }
     }
@@ -103,7 +102,7 @@ public class BookServiceTest {
             bookService.checkingABook("The Battle of the Apocalipse");
             BookStatus bookStatus = bookService.checkBookStatus("The Battle of the Apocalipse");
             assertEquals(BookStatus.AVAILABLE, bookStatus);
-        } catch (BookAreCheckinedException ex){
+        } catch (BookCheckinException ex){
             assertNull(ex);
         } catch (BookNotFoundException ex) {
             assertNull(ex);
@@ -117,7 +116,7 @@ public class BookServiceTest {
         try {
             bookService.checkingABook("1984");
             bookService.checkingABook("1984");
-        } catch (BookAreCheckinedException ex){
+        } catch (BookCheckinException ex){
             assertNotNull(ex);
         } catch (BookNotFoundException ex) {
             assertNull(ex);
@@ -131,7 +130,7 @@ public class BookServiceTest {
         try {
             bookService.checkoutABook("1984");
             bookService.checkoutABook("1984");
-        } catch (BookAreCheckoutedException ex){
+        } catch (BookCheckoutException ex){
             assertNotNull(ex);
         } catch (BookNotFoundException ex) {
             assertNull(ex);

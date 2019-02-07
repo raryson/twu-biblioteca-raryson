@@ -1,7 +1,7 @@
 package com.twu.biblioteca.services;
 
-import com.twu.biblioteca.exceptions.BookAreCheckinedException;
-import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
+import com.twu.biblioteca.exceptions.BookCheckinException;
+import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.models.Book;
@@ -29,26 +29,26 @@ public class BookService {
         return iteredBook.orElse(null);
     }
 
-    public void checkoutABook(String bookName) throws BookAreCheckoutedException, BookNotFoundException {
+    public void checkoutABook(String bookName) throws BookCheckoutException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
         if (searchedBook == null) {
             throw new BookNotFoundException();
         }
         if(searchedBook.getStatus().equals(BookStatus.RENTED)) {
-            throw new BookAreCheckoutedException();
+            throw new BookCheckoutException();
         }
         this.books.remove(searchedBook);
         searchedBook.setStatus(BookStatus.RENTED);
         this.books.add(searchedBook);
     }
 
-    public void checkingABook(String bookName) throws BookAreCheckinedException, BookNotFoundException {
+    public void checkingABook(String bookName) throws BookCheckinException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
         if (searchedBook == null) {
             throw new BookNotFoundException();
         }
         if(searchedBook.getStatus().equals(BookStatus.AVAILABLE)) {
-            throw new BookAreCheckinedException();
+            throw new BookCheckinException();
         }
         this.books.remove(searchedBook);
         searchedBook.setStatus(BookStatus.AVAILABLE);

@@ -1,15 +1,14 @@
 package com.twu.biblioteca.services;
 
-import com.twu.biblioteca.exceptions.BookAreCheckinedException;
-import com.twu.biblioteca.exceptions.BookAreCheckoutedException;
+import com.twu.biblioteca.exceptions.BookCheckinException;
+import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
-import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
+import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.models.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MenuService {
@@ -32,7 +31,7 @@ public class MenuService {
         return this.menuList;
     }
 
-    public void triggerActionItem(MenuTypes triggeredOption, Scanner userInput, BookService bookService) throws ItemOnMenuNotFoundException {
+    public void triggerActionItem(MenuTypes triggeredOption, Scanner userInput, BookService bookService) throws MenuItemNotFoundException {
         switch(triggeredOption) {
             case LISTOFBOOKS: {
                 System.out.println(Messages.booksInfosMessage(bookService.getAllBooks()));
@@ -50,7 +49,7 @@ public class MenuService {
                 try {
                     userInput.nextLine();
                     bookService.checkoutABook(userInput.nextLine());
-                } catch (BookAreCheckoutedException ex) {
+                } catch (BookCheckoutException ex) {
                     System.out.println(Messages.checkoutedABookFailed());
                     break;
                 } catch (BookNotFoundException ex) {
@@ -66,7 +65,7 @@ public class MenuService {
                 try {
                     userInput.nextLine();
                     bookService.checkingABook(userInput.nextLine());
-                } catch (BookAreCheckinedException ex) {
+                } catch (BookCheckinException ex) {
                     System.out.println(Messages.checkinABookFailed());
                     break;
                 } catch (BookNotFoundException ex) {
@@ -79,7 +78,7 @@ public class MenuService {
             }
 
             case MISSCLICK: {
-                throw new ItemOnMenuNotFoundException();
+                throw new MenuItemNotFoundException();
             }
         }
     }

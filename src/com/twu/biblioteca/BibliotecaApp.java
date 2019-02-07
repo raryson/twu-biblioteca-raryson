@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.exceptions.ItemOnMenuNotFoundException;
+import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
@@ -27,7 +27,7 @@ public class BibliotecaApp {
                         userInput,
                         bookService);
 
-            } catch (ItemOnMenuNotFoundException e) {
+            } catch (MenuItemNotFoundException e) {
                 userInput.nextLine();
                 System.out.println(Messages.triggeredInvalidMenu());
             } catch (InputMismatchException ex) {
