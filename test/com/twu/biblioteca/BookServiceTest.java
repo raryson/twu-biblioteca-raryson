@@ -40,21 +40,6 @@ public class BookServiceTest {
     }
 
 
-    @Test
-    public void whenBookAreBeCheckouted() {
-        BookData.generateLibrary();
-        BookService bookService = new BookService(BookData.books);
-        try {
-            bookService.checkoutABook("1984");
-        } catch (BookCheckoutException e) {
-            assertNotNull(e);
-        } catch (BookNotFoundException e) {
-            assertNotNull(e);
-        }
-
-        BookStatus bookStatus = bookService.checkBookStatus("1984");
-        assertEquals(BookStatus.RENTED, bookStatus);
-    }
 
     @Test
     public void whenABookSelectedNotExistInCheckout() {
@@ -78,21 +63,6 @@ public class BookServiceTest {
         } catch (BookNotFoundException ex) {
             assertNotNull(ex);
         } catch (BookCheckinException ex) {
-            assertNull(ex);
-        }
-    }
-
-    @Test
-    public void whenBookAreCheckined() {
-        BookData.generateLibrary();
-        BookService bookService = new BookService(BookData.books);
-        try {
-            bookService.checkingABook("The Battle of the Apocalipse");
-            BookStatus bookStatus = bookService.checkBookStatus("The Battle of the Apocalipse");
-            assertEquals(BookStatus.AVAILABLE, bookStatus);
-        } catch (BookCheckinException ex){
-            assertNull(ex);
-        } catch (BookNotFoundException ex) {
             assertNull(ex);
         }
     }

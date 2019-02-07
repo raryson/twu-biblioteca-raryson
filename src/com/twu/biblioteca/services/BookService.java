@@ -26,16 +26,13 @@ public class BookService {
         return filteredBooks;
     };
 
-    private Book findABookByName(String name){
+    private Book findABookByName(String name) throws BookNotFoundException{
         Optional<Book> iteredBook = books.stream().filter(book -> book.getName().equals(name)).findFirst();
-        return iteredBook.orElse(null);
+        return iteredBook.orElseThrow(() -> new BookNotFoundException());
     }
 
     public void checkoutABook(String bookName) throws BookCheckoutException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
-        if (searchedBook == null) {
-            throw new BookNotFoundException();
-        }
         if(searchedBook.getStatus().equals(BookStatus.RENTED)) {
             throw new BookCheckoutException();
         }
@@ -44,16 +41,9 @@ public class BookService {
 
     public void checkingABook(String bookName) throws BookCheckinException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
-        if (searchedBook == null) {
-            throw new BookNotFoundException();
-        }
         if(searchedBook.getStatus().equals(BookStatus.AVAILABLE)) {
             throw new BookCheckinException();
         }
         searchedBook.setStatus(BookStatus.AVAILABLE);
-    }
-
-    public BookStatus checkBookStatus(String bookName){
-        return findABookByName(bookName).getStatus();
     }
 }
