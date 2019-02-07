@@ -43,10 +43,10 @@ public class MenuService {
                     userInput.nextLine();
                     bookService.checkoutABook(userInput.nextLine());
                 } catch (BookCheckoutException ex) {
-                    System.out.println(Messages.checkoutedABookFailed());
+                    System.out.println(ex.getMessage());
                     break;
                 } catch (BookNotFoundException ex) {
-                    System.out.println(Messages.bookNotExist());
+                    System.out.println(ex.getMessage());
                     break;
                 }
                 System.out.println(Messages.checkoutedABookSucesseful());
@@ -59,10 +59,10 @@ public class MenuService {
                     userInput.nextLine();
                     bookService.checkingABook(userInput.nextLine());
                 } catch (BookCheckinException ex) {
-                    System.out.println(Messages.checkinABookFailed());
+                    System.out.println(ex.getMessage());
                     break;
                 } catch (BookNotFoundException ex) {
-                    System.out.println(Messages.bookNotExist());
+                    System.out.println(ex.getMessage());
                     break;
 
                 }

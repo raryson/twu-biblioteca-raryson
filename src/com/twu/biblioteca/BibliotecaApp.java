@@ -31,7 +31,7 @@ public class BibliotecaApp {
 
             } catch (MenuItemNotFoundException e) {
                 userInput.nextLine();
-                System.out.println(Messages.triggeredInvalidMenu());
+                System.out.println(e.getMessage());
             } catch (InputMismatchException ex) {
                 userInput.nextLine();
                 System.out.println(Messages.triggeredInvalidMenu());
