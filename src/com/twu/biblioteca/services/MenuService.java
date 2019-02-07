@@ -9,25 +9,18 @@ import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.models.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuService {
 
-    public MenuService() {
-        MenuItem exitItem = new MenuItem("Exit", MenuTypes.EXIT, 0);
-        MenuItem listOfBookItem = new MenuItem("List All Books", MenuTypes.LISTOFBOOKS, 1);
-        MenuItem checkoutABookItem = new MenuItem("Checkout a Book", MenuTypes.CHECKOUTABOOK, 2);
-        MenuItem checkingABook = new MenuItem("Checking a Book", MenuTypes.CHECKIGNABOOK, 3);
-
-        menuList.add(exitItem);
-        menuList.add(listOfBookItem);
-        menuList.add(checkoutABookItem);
-        menuList.add(checkingABook);
+    public MenuService(List<MenuItem> menuList) {
+        this.menuList = menuList;
     }
 
-    private ArrayList<MenuItem> menuList = new ArrayList();
+    private List<MenuItem> menuList = new ArrayList();
 
-    public ArrayList<MenuItem> getMenuList() {
+    public List<MenuItem> getMenuList() {
         return this.menuList;
     }
 

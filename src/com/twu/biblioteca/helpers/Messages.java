@@ -20,7 +20,7 @@ public class Messages {
         return booksMessage;
     }
 
-    public static String menuInfoMessage(ArrayList<MenuItem> menuItens){
+    public static String menuInfoMessage(List<MenuItem> menuItens){
         String menuMessage = "Please, select one of this options:\n";
         for(MenuItem itens : menuItens){
             menuMessage += String.format("\t%s - %s", itens.getNumber(), itens.getName());
