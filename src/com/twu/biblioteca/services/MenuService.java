@@ -6,6 +6,7 @@ import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.models.MenuItem;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 public class MenuService {
 
     public MenuService(List<MenuItem> menuList) {
+
         this.menuList = menuList;
     }
 
@@ -24,7 +26,8 @@ public class MenuService {
         return this.menuList;
     }
 
-    public void triggerActionItem(MenuTypes triggeredOption, Scanner userInput, BookService bookService) throws MenuItemNotFoundException {
+    public void triggerActionItem(MenuTypes triggeredOption, Scanner userInput) throws MenuItemNotFoundException {
+        BookService bookService = new BookService(BookData.books);
         switch(triggeredOption) {
             case LISTOFBOOKS: {
                 System.out.println(Messages.booksInfosMessage(bookService.getAllBooks()));

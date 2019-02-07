@@ -31,7 +31,7 @@ public class MenuServiceTest {
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         try {
-            menuService.triggerActionItem(MenuTypes.MISSCLICK, null, null);
+            menuService.triggerActionItem(MenuTypes.MISSCLICK, null);
         } catch (MenuItemNotFoundException e) {
             assertNotNull(e);
         }

@@ -26,8 +26,7 @@ public class BibliotecaApp {
                 int readedInt = userInput.nextInt();
                 menuService.triggerActionItem(
                         MenuTypes.valueOf(readedInt).orElse(MenuTypes.MISSCLICK),
-                        userInput,
-                        bookService);
+                        userInput);
 
             } catch (MenuItemNotFoundException e) {
                 userInput.nextLine();
