@@ -4,7 +4,6 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.exceptions.BookCheckinException;
 import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
-import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.services.BookService;
@@ -17,7 +16,7 @@ import static org.junit.Assert.*;
 public class BookServiceTest {
 
     @Test
-    public void whenUserNeedToViewBooks() {
+    public void whenUserNeedToViewBooksAssertToBookListIsNotNull() {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         final List<Book> allBooks = bookService.getAllBooks();
@@ -25,24 +24,33 @@ public class BookServiceTest {
     }
 
     @Test
-    public void whenUserNeedToViewAllBooksWithAuthorsAndPublishYearAndName() {
+    public void whenUserNeedToViewAllBooksWithAuthorsAssertAuthorIsNotNull() {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
-        for(Book book : bookService.getAllBooks()) {
-            String bookName = book.getName();
-            String bookAuthor = book.getAuthor();
-            String bookPublishDate = book.getPublishDate();
+        String authorName = bookService.getAllBooks().get(1).getAuthor();
+        assertNotNull(authorName);
+    }
 
-            assertNotNull(bookName);
-            assertNotNull(bookAuthor);
-            assertNotNull(bookPublishDate);
-        }
+    @Test
+    public void whenUserNeedToViewAllBooksWithAuthorsAssertBookNameIsNotNull() {
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
+        String bookName = bookService.getAllBooks().get(1).getName();
+        assertNotNull(bookName);
+    }
+
+    @Test
+    public void whenUserNeedToViewAllBooksWithAuthorsAssertPublishDateIsNotNull() {
+        BookData.generateLibrary();
+        BookService bookService = new BookService(BookData.books);
+        String publishDate = bookService.getAllBooks().get(1).getPublishDate();
+        assertNotNull(publishDate);
     }
 
 
 
     @Test
-    public void whenABookSelectedNotExistInCheckout() {
+    public void whenABookSelectedNotExistInCheckoutAssertToThrowAExceptionBookNotFound() {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
@@ -55,7 +63,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void whenABookSelectedNotExistInCheckin() {
+    public void whenABookSelectedNotExistInCheckinAsssertToThrowAExceptionBookNotFound() {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
@@ -68,7 +76,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void whenBookAreCheckouinedCheckedBook() {
+    public void whenBookAreCheckouinedCheckedBookAssertToThrowAExceptionBookCheckingException() {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
@@ -82,7 +90,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void whenBookAreCheckoutedCheckedBook() {
+    public void whenBookAreCheckoutedCheckedBookAssertToThrowAExceptionBookCheckoutedException() {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
