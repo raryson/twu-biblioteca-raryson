@@ -18,7 +18,6 @@ public class BibliotecaApp {
         BookData.generateLibrary();
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
-        BookService bookService = new BookService(BookData.books);
         Scanner userInput = new Scanner(System.in);
         while(true){
             try {
