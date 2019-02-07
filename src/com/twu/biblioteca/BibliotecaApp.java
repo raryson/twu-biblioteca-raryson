@@ -5,6 +5,7 @@ import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MenuData;
+import com.twu.biblioteca.infra.MovieData;
 import com.twu.biblioteca.services.BookService;
 import com.twu.biblioteca.services.MenuService;
 
@@ -16,6 +17,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         System.out.println(Messages.helloMessage());
         BookData.generateLibrary();
+        MovieData.generateMovies();
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         Scanner userInput = new Scanner(System.in);

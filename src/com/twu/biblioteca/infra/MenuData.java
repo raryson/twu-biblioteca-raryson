@@ -15,10 +15,12 @@ public class MenuData {
         MenuItem listOfBookItem = new MenuItem("List All Books", MenuTypes.LISTOFBOOKS, 1);
         MenuItem checkoutABookItem = new MenuItem("Checkout a Book", MenuTypes.CHECKOUTABOOK, 2);
         MenuItem checkingABook = new MenuItem("Checking a Book", MenuTypes.CHECKIGNABOOK, 3);
+        MenuItem listOfMovieItem = new MenuItem("List All Movies", MenuTypes.LISTOFMOVIES, 4);
 
         menuList.add(exitItem);
         menuList.add(listOfBookItem);
         menuList.add(checkoutABookItem);
         menuList.add(checkingABook);
+        menuList.add(listOfMovieItem);
     }
 }

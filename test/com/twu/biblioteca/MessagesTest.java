@@ -3,8 +3,10 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MenuData;
+import com.twu.biblioteca.infra.MovieData;
 import com.twu.biblioteca.services.BookService;
 import com.twu.biblioteca.services.MenuService;
+import com.twu.biblioteca.services.MovieService;
 import org.junit.Test;
 
 
@@ -26,11 +28,23 @@ public class MessagesTest {
 
     @Test
     public void whenMenuAreShowedOnScreenAssertToEqualToMockedMenuList() {
-        final String expectedMenuMessage = "Please, select one of this options:\n\t0 - Exit\t1 - List All Books" +
-                "\t2 - Checkout a Book\t3 - Checking a Book";
+        final String expectedMenuMessage = "Please, select one of this options:\n\n0 - Exit\n1 - List All Books" +
+                "\n2 - Checkout a Book\n3 - Checking a Book\n4 - List All Movies";
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menuService.getMenuList()));
+    }
+
+    @Test
+    public void whenMovieAreShowedOnScreenAssertToEqualMockedListOfBooks() {
+        final String expectedMoviesMessage = "\tMovie Name\tDirector\tYear\tRating\n" +
+                "\tMatrix\tLana Wachowski and Lilly Wachowski\t2000\tTEN\n" +
+                "\tNarnia\tC. S. Lewis\t2006\tSIX\n" +
+                "\t9 Miles\tEminem\t2010\tNORATING\n";
+
+        MovieData.generateMovies();
+        MovieService movieService = new MovieService(MovieData.movies);
+        assertEquals(expectedMoviesMessage, Messages.moviesInfosMessage(movieService.getAllMovies()));
     }
 
 }

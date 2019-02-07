@@ -4,7 +4,12 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum MenuTypes {
-    LISTOFBOOKS(1), EXIT(0), MISSCLICK(666), CHECKOUTABOOK(2), CHECKIGNABOOK(3);
+    LISTOFBOOKS(1),
+    EXIT(0),
+    MISSCLICK(666),
+    CHECKOUTABOOK(2),
+    CHECKIGNABOOK(3),
+    LISTOFMOVIES(4);
 
     private final int menuValue;
 

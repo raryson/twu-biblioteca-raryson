@@ -2,6 +2,7 @@ package com.twu.biblioteca.helpers;
 
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.models.MenuItem;
+import com.twu.biblioteca.models.Movie;
 
 import java.util.List;
 
@@ -19,10 +20,19 @@ public class Messages {
         return booksMessage;
     }
 
+    public static String moviesInfosMessage(List<Movie> allMovies) {
+        String movieMessage = "\tMovie Name\tDirector\tYear\tRating\n";
+        for(Movie movie : allMovies){
+            movieMessage += String.format("\t%s\t%s\t%s\t%s\n", movie.getName(), movie.getDirector(),
+                    movie.getYear(), movie.getRating());
+        }
+        return movieMessage;
+    }
+
     public static String menuInfoMessage(List<MenuItem> menuItens){
         String menuMessage = "Please, select one of this options:\n";
         for(MenuItem itens : menuItens){
-            menuMessage += String.format("\t%s - %s", itens.getNumber(), itens.getName());
+            menuMessage += String.format("\n%s - %s", itens.getNumber(), itens.getName());
         }
         return menuMessage;
     }
@@ -48,5 +58,4 @@ public class Messages {
     public static String triggeredExit(){
         return "Bye bye";
     }
-
 }

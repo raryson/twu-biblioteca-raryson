@@ -7,6 +7,7 @@ import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
 import com.twu.biblioteca.helpers.MenuTypes;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
+import com.twu.biblioteca.infra.MovieData;
 import com.twu.biblioteca.models.MenuItem;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class MenuService {
 
     public void triggerActionItem(MenuTypes triggeredOption, Scanner userInput) throws MenuItemNotFoundException {
         BookService bookService = new BookService(BookData.books);
+        MovieService movieService = new MovieService(MovieData.movies);
         switch(triggeredOption) {
             case LISTOFBOOKS: {
                 System.out.println(Messages.booksInfosMessage(bookService.getAllBooks()));
@@ -70,6 +72,11 @@ public class MenuService {
 
                 }
                 System.out.println(Messages.checkinedBookSucesseful());
+                break;
+            }
+
+            case LISTOFMOVIES: {
+                System.out.println(Messages.moviesInfosMessage(movieService.getAllMovies()));
                 break;
             }
 
