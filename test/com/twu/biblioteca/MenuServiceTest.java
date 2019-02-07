@@ -41,22 +41,4 @@ public class MenuServiceTest {
         }
     }
 
-    @Test
-    public void whenUserTriggerAInvalidMenuItem(){
-        final String expectedMessage = "Sorry, invalid menu input, try again please!";
-        assertEquals(expectedMessage, Messages.triggeredInvalidMenu());
-    }
-
-    @Test
-    public void whenUserTriggerExitEvent() {
-        final String expectedMessage = "Bye bye";
-        assertEquals(expectedMessage, Messages.triggeredExit());
-    }
-
-    @Test
-    public void whenUserSelectCheckoutABook() {
-        final String expectedMessage = "Enter with a book name to checkout";
-        assertEquals(expectedMessage, Messages.enterYourBookToCheckout());
-    }
-
 }
