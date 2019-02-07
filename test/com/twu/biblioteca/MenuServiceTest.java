@@ -26,15 +26,6 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void whenMenuAreShowedOnScreen() {
-        final String expectedMenuMessage = "Please, select one of this options:\n\t0 - Exit\t1 - List All Books" +
-                "\t2 - Checkout a Book\t3 - Checking a Book";
-        MenuData.generateMenuList();
-        MenuService menuService = new MenuService(MenuData.menuList);
-        assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menuService.getMenuList()));
-    }
-
-    @Test
     public void whenUserSelectAInvalidMenuItem(){
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);

@@ -5,7 +5,6 @@ import com.twu.biblioteca.exceptions.BookCheckinException;
 import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
-import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.services.BookService;
@@ -40,17 +39,6 @@ public class BookServiceTest {
         }
     }
 
-    @Test
-    public void whenBooksAreShowedOnScreen() {
-        final String expectedBooksMessage = "\tBook Name\tAuthor\tPublish Date\n" +
-                                    "\t1984\tGeorge Orwell\t07/01/1996\n" +
-                                    "\tHarry Potter\tJ.K Rolling\t07/01/2006\n" +
-                                    "\tMatrix\tLana Wachowski and Lilly Wachowski\t07/01/2016\n";
-
-        BookData.generateLibrary();
-        BookService bookService = new BookService(BookData.books);
-        assertEquals(expectedBooksMessage, Messages.booksInfosMessage(bookService.getAllBooks()));
-    }
 
     @Test
     public void whenBookAreBeCheckouted() {
