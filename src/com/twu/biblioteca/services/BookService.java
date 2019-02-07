@@ -19,7 +19,9 @@ public class BookService {
     private List<Book> books = new ArrayList<>();
 
     public List<Book> getAllBooks() {
-        List<Book> filteredBooks = books.stream().filter(p -> p.getStatus().equals(BookStatus.AVAILABLE))
+        List<Book> filteredBooks = books.stream()
+                .filter(p -> p.getStatus()
+                        .equals(BookStatus.AVAILABLE))
                 .collect(Collectors.toList());
         return filteredBooks;
     };
@@ -37,9 +39,7 @@ public class BookService {
         if(searchedBook.getStatus().equals(BookStatus.RENTED)) {
             throw new BookCheckoutException();
         }
-        this.books.remove(searchedBook);
         searchedBook.setStatus(BookStatus.RENTED);
-        this.books.add(searchedBook);
     }
 
     public void checkingABook(String bookName) throws BookCheckinException, BookNotFoundException {
@@ -50,9 +50,7 @@ public class BookService {
         if(searchedBook.getStatus().equals(BookStatus.AVAILABLE)) {
             throw new BookCheckinException();
         }
-        this.books.remove(searchedBook);
         searchedBook.setStatus(BookStatus.AVAILABLE);
-        this.books.add(searchedBook);
     }
 
     public BookStatus checkBookStatus(String bookName){
