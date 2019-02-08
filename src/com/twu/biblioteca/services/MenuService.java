@@ -3,11 +3,14 @@ package com.twu.biblioteca.services;
 import com.twu.biblioteca.exceptions.*;
 import com.twu.biblioteca.helpers.MenuType;
 import com.twu.biblioteca.helpers.Messages;
+import com.twu.biblioteca.helpers.UserType;
+import com.twu.biblioteca.infra.AuthData;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MovieData;
 import com.twu.biblioteca.models.MenuItem;
 import com.twu.biblioteca.models.Movie;
 
+import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,6 +26,15 @@ public class MenuService {
 
     public List<MenuItem> getMenuList() {
         return this.menuList;
+    }
+
+    private UserType makeLogin(Scanner userInput) throws LoginException, UserNotFoundException {
+        System.out.println(Messages.enterLibraryNumber());
+        String libraryNumber = userInput.nextLine();
+        System.out.println(Messages.enterYourPassword());
+        String password = userInput.nextLine();
+        AuthService authService = new AuthService(AuthData.users);
+        return authService.login(libraryNumber, password);
     }
 
     public void triggerActionItem(MenuType triggeredOption, Scanner userInput) throws MenuItemNotFoundException {
@@ -42,9 +54,10 @@ public class MenuService {
             }
 
             case CHECKOUTABOOK: {
-                System.out.println(Messages.enterYourBookToCheckout());
                 try {
                     userInput.nextLine();
+                    this.makeLogin(userInput);
+                    System.out.println(Messages.enterYourBookToCheckout());
                     bookService.checkoutABook(userInput.nextLine());
                 } catch (BookCheckoutException ex) {
                     System.out.println(ex.getMessage());
@@ -52,6 +65,10 @@ public class MenuService {
                 } catch (BookNotFoundException ex) {
                     System.out.println(ex.getMessage());
                     break;
+                } catch (LoginException ex) {
+                    System.out.println(ex);
+                } catch (UserNotFoundException ex) {
+                    System.out.println(ex);
                 }
                 System.out.println(Messages.checkoutedABookSucesseful());
                 break;

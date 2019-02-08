@@ -78,4 +78,12 @@ public class Messages {
     public static String userNotexist() {
         return "Error at login, try again later";
     }
+
+    public static String enterLibraryNumber() {
+        return "Enter with you library number:";
+    }
+
+    public static String enterYourPassword() {
+        return "Enter with you password:";
+    }
 }

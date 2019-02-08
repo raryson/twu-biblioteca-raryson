@@ -1,6 +1,7 @@
 package com.twu.biblioteca.services;
 
 import com.twu.biblioteca.exceptions.UserNotFoundException;
+import com.twu.biblioteca.helpers.UserType;
 import com.twu.biblioteca.models.User;
 
 import javax.security.auth.login.LoginException;
@@ -23,10 +24,11 @@ public class AuthService {
         return iteredUser.orElseThrow(() -> new UserNotFoundException());
     }
 
-    public void login(String libraryNumber, String password) throws UserNotFoundException, LoginException {
+    public UserType login(String libraryNumber, String password) throws UserNotFoundException, LoginException {
         User user = findUserByLibraryNumber(libraryNumber);
         if (!user.getPassword().equals(password)) {
             throw new LoginException();
         }
+        return user.getUserType();
     }
 }

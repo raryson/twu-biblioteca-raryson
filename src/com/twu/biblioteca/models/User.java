@@ -2,6 +2,9 @@ package com.twu.biblioteca.models;
 
 import com.twu.biblioteca.helpers.UserType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String name;
     private String email;
@@ -9,6 +12,7 @@ public class User {
     private String password;
     private String phone;
     private UserType userType;
+    private List<Book> checkoutBooks = new ArrayList<Book>();
 
     public User(String name, String email, String phone, UserType userType, String libraryNumber, String password) {
         this.name = name;
@@ -17,6 +21,15 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.userType = userType;
+    }
+
+
+    public void addBookOnCheckoutdBooks(Book book) {
+        this.checkoutBooks.add(book);
+    }
+
+    public List<Book> getCheckoutdBooks() {
+        return checkoutBooks;
     }
 
     public String getName() {
