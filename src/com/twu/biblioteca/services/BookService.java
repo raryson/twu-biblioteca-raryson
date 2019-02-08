@@ -27,7 +27,10 @@ public class BookService {
     };
 
     private Book findABookByName(String name) throws BookNotFoundException{
-        Optional<Book> iteredBook = books.stream().filter(book -> book.getName().equals(name)).findFirst();
+        Optional<Book> iteredBook = books
+                .stream()
+                .filter(book -> book.getName().equals(name))
+                .findFirst();
         return iteredBook.orElseThrow(() -> new BookNotFoundException());
     }
 

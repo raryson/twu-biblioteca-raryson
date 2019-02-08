@@ -58,4 +58,16 @@ public class Messages {
     public static String triggeredExit(){
         return "Bye bye";
     }
+
+    public static String productNotExist() {
+        return "Sorry, this product dont exist, try again";
+    }
+
+    public static String checkoutedFailed() {
+        return "Sorry, that product is not available";
+    }
+
+    public static String movieNotFound(){
+        return "Sorry, that product is not available";
+    }
 }
