@@ -1,12 +1,12 @@
 package com.twu.biblioteca.services;
 
-import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.exceptions.MovieNotFoundException;
-import com.twu.biblioteca.models.Book;
+import com.twu.biblioteca.helpers.ProductStatus;
 import com.twu.biblioteca.models.Movie;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MovieService {
 
@@ -17,7 +17,11 @@ public class MovieService {
     }
 
     public List<Movie> getAllMovies() {
-        return movies;
+        List<Movie> filteredMovies = movies.stream()
+                .filter(p -> p.getStatus()
+                        .equals(ProductStatus.AVAILABLE))
+                .collect(Collectors.toList());
+        return filteredMovies;
     }
 
     public Movie findMovieByName(String name) throws MovieNotFoundException {

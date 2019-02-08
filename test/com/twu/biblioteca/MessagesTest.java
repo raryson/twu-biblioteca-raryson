@@ -29,7 +29,7 @@ public class MessagesTest {
     @Test
     public void whenMenuAreShowedOnScreenAssertToEqualToMockedMenuList() {
         final String expectedMenuMessage = "Please, select one of this options:\n\n0 - Exit\n1 - List All Books" +
-                "\n2 - Checkout a Book\n3 - Checking a Book\n4 - List All Movies";
+                "\n2 - Checkout a Book\n3 - Checking a Book\n4 - List All Movies\n5 - Checkin a Movie";
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menuService.getMenuList()));
@@ -39,8 +39,7 @@ public class MessagesTest {
     public void whenMovieAreShowedOnScreenAssertToEqualMockedListOfBooks() {
         final String expectedMoviesMessage = "\tMovie Name\tDirector\tYear\tRating\n" +
                 "\tMatrix\tLana Wachowski and Lilly Wachowski\t2000\tTEN\n" +
-                "\tNarnia\tC. S. Lewis\t2006\tSIX\n" +
-                "\t9 Miles\tEminem\t2010\tNORATING\n";
+                "\tNarnia\tC. S. Lewis\t2006\tSIX\n";
 
         MovieData.generateMovies();
         MovieService movieService = new MovieService(MovieData.movies);

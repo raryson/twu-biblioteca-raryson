@@ -9,7 +9,8 @@ public enum MenuTypes {
     MISSCLICK(666),
     CHECKOUTABOOK(2),
     CHECKIGNABOOK(3),
-    LISTOFMOVIES(4);
+    LISTOFMOVIES(4),
+    CHECKINGAMOVIE(5);
 
     private final int menuValue;
 
@@ -22,4 +23,5 @@ public enum MenuTypes {
                 .filter(menuType -> menuType.menuValue == value)
                 .findFirst();
     }
+
 }

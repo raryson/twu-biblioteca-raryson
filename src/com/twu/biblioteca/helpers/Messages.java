@@ -70,4 +70,8 @@ public class Messages {
     public static String movieNotFound(){
         return "Sorry, that product is not available";
     }
+
+    public static String enterYourMovieToChecking() {
+        return "Enter with a movie name to checkin";
+    }
 }
