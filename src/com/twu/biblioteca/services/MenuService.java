@@ -75,9 +75,10 @@ public class MenuService {
             }
 
             case CHECKIGNABOOK: {
-                System.out.println(Messages.enterYourBookToCheckin());
                 try {
                     userInput.nextLine();
+                    this.makeLogin(userInput);
+                    System.out.println(Messages.enterYourBookToCheckin());
                     bookService.checkingABook(userInput.nextLine());
                 } catch (BookCheckinException ex) {
                     System.out.println(ex.getMessage());
@@ -86,6 +87,10 @@ public class MenuService {
                     System.out.println(ex.getMessage());
                     break;
 
+                } catch (LoginException ex) {
+                    System.out.println(ex);
+                } catch (UserNotFoundException ex) {
+                    System.out.println(ex);
                 }
                 System.out.println(Messages.checkinedBookSucesseful());
                 break;

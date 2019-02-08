@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63fd427c-58bd-4f43-859f-9de2f135b76b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/helpers/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/helpers/Messages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/infra/AuthData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/infra/AuthData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/services/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/services/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/services/BookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/BookServiceTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
+            <state relative-caret-position="320">
+              <caret line="85" column="43" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/helpers/Messages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="85" column="46" lean-forward="true" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+            <state relative-caret-position="314">
+              <caret line="81" column="47" lean-forward="true" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2332#2333#0" expanded="true" />
@@ -80,8 +73,8 @@
                 <element signature="e#2724#2725#0" expanded="true" />
                 <element signature="e#2767#2768#0" expanded="true" />
                 <element signature="e#2823#2824#0" expanded="true" />
-                <element signature="e#2872#2873#0" expanded="true" />
                 <element signature="e#2896#2897#0" expanded="true" />
+                <element signature="e#2974#2975#0" expanded="true" />
                 <element signature="e#2999#3000#0" expanded="true" />
               </folding>
             </state>
@@ -248,8 +241,8 @@
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/services/AuthService.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/models/User.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" />
-        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/helpers/Messages.java" />
+        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java" />
       </list>
     </option>
   </component>
@@ -341,7 +334,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549645174009" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549645277637" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -861,20 +854,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="55" column="33" lean-forward="true" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/helpers/Messages.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="85" column="46" lean-forward="true" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+        <state relative-caret-position="314">
+          <caret line="81" column="47" lean-forward="true" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2332#2333#0" expanded="true" />
@@ -885,9 +868,19 @@
             <element signature="e#2724#2725#0" expanded="true" />
             <element signature="e#2767#2768#0" expanded="true" />
             <element signature="e#2823#2824#0" expanded="true" />
-            <element signature="e#2872#2873#0" expanded="true" />
             <element signature="e#2896#2897#0" expanded="true" />
+            <element signature="e#2974#2975#0" expanded="true" />
             <element signature="e#2999#3000#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/services/MenuService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="85" column="43" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
