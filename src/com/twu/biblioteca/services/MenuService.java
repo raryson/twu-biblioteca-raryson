@@ -9,6 +9,7 @@ import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MovieData;
 import com.twu.biblioteca.models.MenuItem;
 import com.twu.biblioteca.models.Movie;
+import com.twu.biblioteca.models.User;
 
 import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class MenuService {
         return this.menuList;
     }
 
-    private UserType makeLogin(Scanner userInput) throws LoginException, UserNotFoundException {
+    private User makeLogin(Scanner userInput) throws LoginException, UserNotFoundException {
         System.out.println(Messages.enterLibraryNumber());
         String libraryNumber = userInput.nextLine();
         System.out.println(Messages.enterYourPassword());
@@ -56,9 +57,9 @@ public class MenuService {
             case CHECKOUTABOOK: {
                 try {
                     userInput.nextLine();
-                    this.makeLogin(userInput);
+                    User user = this.makeLogin(userInput);
                     System.out.println(Messages.enterYourBookToCheckout());
-                    bookService.checkoutABook(userInput.nextLine());
+                    bookService.checkoutABook(userInput.nextLine(), user);
                 } catch (BookCheckoutException ex) {
                     System.out.println(ex.getMessage());
                     break;
@@ -77,9 +78,9 @@ public class MenuService {
             case CHECKIGNABOOK: {
                 try {
                     userInput.nextLine();
-                    this.makeLogin(userInput);
+                    User user = this.makeLogin(userInput);
                     System.out.println(Messages.enterYourBookToCheckin());
-                    bookService.checkingABook(userInput.nextLine());
+                    bookService.checkingABook(userInput.nextLine(), user);
                 } catch (BookCheckinException ex) {
                     System.out.println(ex.getMessage());
                     break;
@@ -115,6 +116,24 @@ public class MenuService {
 
                 }
                 break;
+            }
+
+            case LIBRARIANINFOS: {
+                userInput.nextLine();
+                try {
+                    User user = makeLogin(userInput);
+                    if (user.getUserType().equals(UserType.ADMIN)) {
+                        AuthService authService = new AuthService(AuthData.users);
+                        System.out.println(Messages.
+                                librarianGetUserInfosMessage(authService.getAllUsersWithTypeCustomer()));
+                    }
+                } catch (LoginException e) {
+                    System.out.println(e);
+                } catch (UserNotFoundException e) {
+                    System.out.println(e);
+                }
+                break;
+
             }
 
             case MISSCLICK: {

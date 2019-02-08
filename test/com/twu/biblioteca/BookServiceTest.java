@@ -4,11 +4,16 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.exceptions.BookCheckinException;
 import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
+import com.twu.biblioteca.exceptions.UserNotFoundException;
+import com.twu.biblioteca.infra.AuthData;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.models.Book;
+import com.twu.biblioteca.models.User;
+import com.twu.biblioteca.services.AuthService;
 import com.twu.biblioteca.services.BookService;
 import org.junit.Test;
 
+import javax.security.auth.login.LoginException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -54,11 +59,18 @@ public class BookServiceTest {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
-            bookService.checkoutABook("The ruleglessias Chronicals");
+            AuthData.generateUsers();
+            AuthService authService = new AuthService(AuthData.users);
+            User user = authService.login("111-1111", "123");
+            bookService.checkoutABook("The ruleglessias Chronicals", user);
         } catch (BookNotFoundException ex) {
             assertNotNull(ex);
         } catch (BookCheckoutException ex) {
             assertNull(ex);
+        } catch (UserNotFoundException e) {
+            assertNull(e);
+        } catch (LoginException e) {
+            assertNull(e);
         }
     }
 
@@ -67,11 +79,18 @@ public class BookServiceTest {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
-            bookService.checkingABook("The ruleglessias Chronicals");
+            AuthData.generateUsers();
+            AuthService authService = new AuthService(AuthData.users);
+            User user = authService.login("111-1111", "123");
+            bookService.checkingABook("The ruleglessias Chronicals", user);
         } catch (BookNotFoundException ex) {
             assertNotNull(ex);
         } catch (BookCheckinException ex) {
             assertNull(ex);
+        } catch (UserNotFoundException e) {
+            assertNull(e);
+        } catch (LoginException e) {
+            assertNull(e);
         }
     }
 
@@ -80,12 +99,19 @@ public class BookServiceTest {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
-            bookService.checkingABook("1984");
-            bookService.checkingABook("1984");
+            AuthData.generateUsers();
+            AuthService authService = new AuthService(AuthData.users);
+            User user = authService.login("111-1111", "123");
+            bookService.checkingABook("1984", user);
+            bookService.checkingABook("1984", user);
         } catch (BookCheckinException ex){
             assertNotNull(ex);
         } catch (BookNotFoundException ex) {
             assertNull(ex);
+        } catch (UserNotFoundException e) {
+            assertNull(e);
+        } catch (LoginException e) {
+            assertNull(e);
         }
     }
 
@@ -94,12 +120,19 @@ public class BookServiceTest {
         BookData.generateLibrary();
         BookService bookService = new BookService(BookData.books);
         try {
-            bookService.checkoutABook("1984");
-            bookService.checkoutABook("1984");
+            AuthData.generateUsers();
+            AuthService authService = new AuthService(AuthData.users);
+            User user = authService.login("111-1111", "123");
+            bookService.checkoutABook("1984", user);
+            bookService.checkoutABook("1984", user);
         } catch (BookCheckoutException ex){
             assertNotNull(ex);
         } catch (BookNotFoundException ex) {
             assertNull(ex);
+        } catch (UserNotFoundException e) {
+            assertNull(e);
+        } catch (LoginException e) {
+            assertNull(e);
         }
     }
 

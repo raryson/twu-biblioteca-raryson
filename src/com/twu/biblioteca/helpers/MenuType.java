@@ -10,7 +10,8 @@ public enum MenuType {
     CHECKOUTABOOK(2),
     CHECKIGNABOOK(3),
     LISTOFMOVIES(4),
-    CHECKINGAMOVIE(5);
+    CHECKINGAMOVIE(5),
+    LIBRARIANINFOS(6);
 
     private final int menuValue;
 

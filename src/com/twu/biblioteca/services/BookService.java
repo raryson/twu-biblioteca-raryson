@@ -5,6 +5,8 @@ import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
 import com.twu.biblioteca.helpers.BookStatus;
 import com.twu.biblioteca.models.Book;
+import com.twu.biblioteca.models.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,19 +36,21 @@ public class BookService {
         return iteredBook.orElseThrow(() -> new BookNotFoundException());
     }
 
-    public void checkoutABook(String bookName) throws BookCheckoutException, BookNotFoundException {
+    public void checkoutABook(String bookName, User user) throws BookCheckoutException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
         if(searchedBook.getStatus().equals(BookStatus.RENTED)) {
             throw new BookCheckoutException();
         }
+        user.addBookOnCheckoutdBooks(searchedBook);
         searchedBook.setStatus(BookStatus.RENTED);
     }
 
-    public void checkingABook(String bookName) throws BookCheckinException, BookNotFoundException {
+    public void checkingABook(String bookName, User user) throws BookCheckinException, BookNotFoundException {
         Book searchedBook =  findABookByName(bookName);
         if(searchedBook.getStatus().equals(BookStatus.AVAILABLE)) {
             throw new BookCheckinException();
         }
+        user.addBookOnCheckoutdBooks(searchedBook);
         searchedBook.setStatus(BookStatus.AVAILABLE);
     }
 

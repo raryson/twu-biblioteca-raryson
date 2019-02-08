@@ -25,12 +25,12 @@ public class AuthService {
         return iteredUser.orElseThrow(() -> new UserNotFoundException());
     }
 
-    public UserType login(String libraryNumber, String password) throws UserNotFoundException, LoginException {
+    public User login(String libraryNumber, String password) throws UserNotFoundException, LoginException {
         User user = findUserByLibraryNumber(libraryNumber);
         if (!user.getPassword().equals(password)) {
             throw new LoginException();
         }
-        return user.getUserType();
+        return user;
     }
 
     public List<User> getAllUsersWithTypeCustomer() {

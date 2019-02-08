@@ -46,7 +46,8 @@ public class MessagesTest {
     @Test
     public void whenMenuAreShowedOnScreenAssertToEqualToMockedMenuList() {
         final String expectedMenuMessage = "Please, select one of this options:\n\n0 - Exit\n1 - List All Books" +
-                "\n2 - Checkout a Book\n3 - Checking a Book\n4 - List All Movies\n5 - Checkin a Movie";
+                "\n2 - Checkout a Book\n3 - Checking a Book\n4 - List All Movies\n5 - Checkin a Movie" +
+                "\n6 - Librarian Infos";
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menuService.getMenuList()));
