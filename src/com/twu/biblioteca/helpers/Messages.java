@@ -74,4 +74,8 @@ public class Messages {
     public static String enterYourMovieToChecking() {
         return "Enter with a movie name to checkin";
     }
+
+    public static String userNotexist() {
+        return "Error at login, try again later";
+    }
 }

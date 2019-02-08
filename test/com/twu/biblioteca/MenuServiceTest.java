@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
-import com.twu.biblioteca.helpers.MenuTypes;
+import com.twu.biblioteca.helpers.MenuType;
 import com.twu.biblioteca.infra.MenuData;
 import com.twu.biblioteca.models.MenuItem;
 import com.twu.biblioteca.services.MenuService;
@@ -21,7 +21,7 @@ public class MenuServiceTest {
         List<MenuItem> menuItens = menuService.getMenuList();
 
         MenuItem menuItemItered = menuItens.get(1);
-        MenuTypes menuTypeItered = menuItemItered.getOption();
+        MenuType menuTypeItered = menuItemItered.getOption();
         assertNotNull(menuItemItered);
         assertNotNull(menuTypeItered);
     }
@@ -31,7 +31,7 @@ public class MenuServiceTest {
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         try {
-            menuService.triggerActionItem(MenuTypes.MISSCLICK, null);
+            menuService.triggerActionItem(MenuType.MISSCLICK, null);
         } catch (MenuItemNotFoundException e) {
             assertNotNull(e);
         }

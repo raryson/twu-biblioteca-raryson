@@ -1,12 +1,11 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.exceptions.MenuItemNotFoundException;
-import com.twu.biblioteca.helpers.MenuTypes;
+import com.twu.biblioteca.helpers.MenuType;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MenuData;
 import com.twu.biblioteca.infra.MovieData;
-import com.twu.biblioteca.services.BookService;
 import com.twu.biblioteca.services.MenuService;
 
 import java.util.InputMismatchException;
@@ -26,7 +25,7 @@ public class BibliotecaApp {
                 System.out.println(Messages.menuInfoMessage(menuService.getMenuList()));
                 int readedInt = userInput.nextInt();
                 menuService.triggerActionItem(
-                        MenuTypes.valueOf(readedInt).orElse(MenuTypes.MISSCLICK),
+                        MenuType.valueOf(readedInt).orElse(MenuType.MISSCLICK),
                         userInput);
 
             } catch (MenuItemNotFoundException e) {

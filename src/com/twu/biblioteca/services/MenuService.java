@@ -1,7 +1,7 @@
 package com.twu.biblioteca.services;
 
 import com.twu.biblioteca.exceptions.*;
-import com.twu.biblioteca.helpers.MenuTypes;
+import com.twu.biblioteca.helpers.MenuType;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MovieData;
@@ -25,7 +25,7 @@ public class MenuService {
         return this.menuList;
     }
 
-    public void triggerActionItem(MenuTypes triggeredOption, Scanner userInput) throws MenuItemNotFoundException {
+    public void triggerActionItem(MenuType triggeredOption, Scanner userInput) throws MenuItemNotFoundException {
         BookService bookService = new BookService(BookData.books);
         MovieService movieService = new MovieService(MovieData.movies);
         ProductService productService = new ProductService();

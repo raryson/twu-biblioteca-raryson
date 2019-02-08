@@ -3,7 +3,7 @@ package com.twu.biblioteca.helpers;
 import java.util.Arrays;
 import java.util.Optional;
 
-public enum MenuTypes {
+public enum MenuType {
     LISTOFBOOKS(1),
     EXIT(0),
     MISSCLICK(666),
@@ -14,11 +14,11 @@ public enum MenuTypes {
 
     private final int menuValue;
 
-     MenuTypes(int value) {
+     MenuType(int value) {
         this.menuValue = value;
     }
 
-    public static Optional<MenuTypes> valueOf(int value) {
+    public static Optional<MenuType> valueOf(int value) {
         return Arrays.stream(values())
                 .filter(menuType -> menuType.menuValue == value)
                 .findFirst();
