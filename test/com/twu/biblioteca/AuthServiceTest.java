@@ -2,14 +2,17 @@ package com.twu.biblioteca;
 
 
 import com.twu.biblioteca.exceptions.UserNotFoundException;
+import com.twu.biblioteca.helpers.UserType;
 import com.twu.biblioteca.infra.AuthData;
+import com.twu.biblioteca.models.User;
 import com.twu.biblioteca.services.AuthService;
 import org.junit.Test;
 
 import javax.security.auth.login.LoginException;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 
 public class AuthServiceTest {
@@ -51,6 +54,14 @@ public class AuthServiceTest {
         } catch (UserNotFoundException ex) {
             assertNotNull(ex);
         }
+    }
+
+    @Test
+    public void whenLibrarianMakeLoginAndEnterOnLibrarianOptionsAssertUsersWithUserTypeCustomerIsNotNull() {
+        AuthData.generateUsers();
+        AuthService authService = new AuthService(AuthData.users);
+        List<User> users = authService.getAllUsersWithTypeCustomer();
+        assertEquals(users.get(0).getUserType(), UserType.CUSTOMER);
     }
 
 

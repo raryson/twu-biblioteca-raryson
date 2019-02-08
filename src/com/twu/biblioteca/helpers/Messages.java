@@ -3,6 +3,7 @@ package com.twu.biblioteca.helpers;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.models.MenuItem;
 import com.twu.biblioteca.models.Movie;
+import com.twu.biblioteca.models.User;
 
 import java.util.List;
 
@@ -18,6 +19,18 @@ public class Messages {
             booksMessage += String.format("\t%s\t%s\t%s\n", book.getName(), book.getAuthor(), book.getPublishDate());
         }
         return booksMessage;
+    }
+
+
+    public static String librarianGetUserInfosMessage(List<User> users) {
+        String librarianMessage = "\tName\tEmail\tPhone\tLibrary Number\n";
+        for(User user : users) {
+            librarianMessage += String.format("\t%s\t%s\t%s\t%s\n", user.getName(), user.getEmail(),
+                    user.getPhone(), user.getLibraryNumber());
+            librarianMessage += String.format("\tBooks with %s:\n", user.getName());
+            librarianMessage += booksInfosMessage(user.getCheckoutdBooks());
+        }
+        return librarianMessage;
     }
 
     public static String moviesInfosMessage(List<Movie> allMovies) {

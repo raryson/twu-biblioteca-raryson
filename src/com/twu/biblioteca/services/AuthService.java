@@ -8,6 +8,7 @@ import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AuthService {
     List<User> users = new ArrayList<User>();
@@ -30,5 +31,13 @@ public class AuthService {
             throw new LoginException();
         }
         return user.getUserType();
+    }
+
+    public List<User> getAllUsersWithTypeCustomer() {
+        List<User> iteredUser = users
+                .stream()
+                .filter(user -> user.getUserType().equals(UserType.CUSTOMER))
+                .collect(Collectors.toList());
+        return iteredUser;
     }
 }
