@@ -50,6 +50,13 @@ public class Messages {
         return menuMessage;
     }
 
+    public static String userDetailsMessage(User user) {
+        String userMessage = "\tName\tEmail\tPhone Number\n";
+        userMessage += String.format("\t%s\t%s\t%s\n", user.getName(), user.getEmail(), user.getPhone());
+        return userMessage;
+
+    }
+
     public static String enterYourBookToCheckout() { return "Enter with a book name to checkout"; }
 
     public static String bookNotExist() { return "Sorry, this book dont exist, try again"; }
@@ -99,4 +106,5 @@ public class Messages {
     public static String enterYourPassword() {
         return "Enter with you password:";
     }
+
 }

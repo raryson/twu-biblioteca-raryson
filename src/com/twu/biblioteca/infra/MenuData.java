@@ -18,6 +18,7 @@ public class MenuData {
         MenuItem listOfMovieItem = new MenuItem("List All Movies", MenuType.LISTOFMOVIES, 4);
         MenuItem checkinAMovie = new MenuItem("Checkin a Movie", MenuType.CHECKINGAMOVIE, 5);
         MenuItem librarianInfos = new MenuItem("Librarian Infos", MenuType.LIBRARIANINFOS, 6);
+        MenuItem userInfos = new MenuItem("User Infos", MenuType.USERINFOS, 7);
 
         menuList.add(exitItem);
         menuList.add(listOfBookItem);
@@ -26,5 +27,6 @@ public class MenuData {
         menuList.add(listOfMovieItem);
         menuList.add(checkinAMovie);
         menuList.add(librarianInfos);
+        menuList.add(userInfos);
     }
 }

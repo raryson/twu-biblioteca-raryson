@@ -136,6 +136,23 @@ public class MenuService {
 
             }
 
+            case USERINFOS: {
+                userInput.nextLine();
+                try {
+                    User user = makeLogin(userInput);
+                    if (user.getUserType().equals(UserType.CUSTOMER)) {
+                        System.out.println(Messages.userDetailsMessage(user));
+                        break;
+                    }
+                } catch (LoginException e) {
+                    System.out.println(e.getMessage());
+                    break;
+                } catch (UserNotFoundException e) {
+                    System.out.println(e.getMessage());
+                    break;
+                }
+            }
+
             case MISSCLICK: {
                 throw new MenuItemNotFoundException();
             }

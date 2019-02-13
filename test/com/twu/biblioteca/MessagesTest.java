@@ -1,16 +1,20 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.exceptions.UserNotFoundException;
 import com.twu.biblioteca.helpers.Messages;
 import com.twu.biblioteca.infra.AuthData;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MenuData;
 import com.twu.biblioteca.infra.MovieData;
+import com.twu.biblioteca.models.User;
 import com.twu.biblioteca.services.AuthService;
 import com.twu.biblioteca.services.BookService;
 import com.twu.biblioteca.services.MenuService;
 import com.twu.biblioteca.services.MovieService;
 import org.junit.Test;
 
+
+import javax.security.auth.login.LoginException;
 
 import static org.junit.Assert.*;
 
@@ -44,10 +48,27 @@ public class MessagesTest {
     }
 
     @Test
+    public void whenUserNeedToViewYourInformation() {
+        final String expectedUserMessage = "\tName\tEmail\tPhone Number\n" +
+                "\tRaryson\traryson.rost@gmail.com\t5551986598986\n";
+        AuthData.generateUsers();
+        AuthService authService = new AuthService(AuthData.users);
+        User user  = null;
+        try {
+            user = authService.login("111-1111", "123");
+            assertEquals(expectedUserMessage, Messages.userDetailsMessage(user));
+        } catch (UserNotFoundException e) {
+            assertNull(e);
+        } catch (LoginException e) {
+            assertNull(e);
+        }
+    }
+
+    @Test
     public void whenMenuAreShowedOnScreenAssertToEqualToMockedMenuList() {
         final String expectedMenuMessage = "Please, select one of this options:\n\n0 - Exit\n1 - List All Books" +
                 "\n2 - Checkout a Book\n3 - Checking a Book\n4 - List All Movies\n5 - Checkin a Movie" +
-                "\n6 - Librarian Infos";
+                "\n6 - Librarian Infos\n7 - User Infos";
         MenuData.generateMenuList();
         MenuService menuService = new MenuService(MenuData.menuList);
         assertEquals(expectedMenuMessage, Messages.menuInfoMessage(menuService.getMenuList()));
