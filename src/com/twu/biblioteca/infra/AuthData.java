@@ -1,6 +1,6 @@
 package com.twu.biblioteca.infra;
 
-import com.twu.biblioteca.helpers.BookStatus;
+import com.twu.biblioteca.helpers.ProductStatus;
 import com.twu.biblioteca.helpers.UserType;
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.models.User;
@@ -15,9 +15,10 @@ public class AuthData {
     public static void generateUsers() {
         users = new ArrayList<User>();
 
-        Book book1 = new Book("1984 pt 2", "George Orwell", "07/01/1996", BookStatus.RENTED);
+        Book book1 = new Book("1984 pt 2", "George Orwell",
+                "07/01/1996", ProductStatus.RENTED);
         Book book2 = new Book("Harry Potter pt 2", "J.K Rolling", "07/01/2006",
-                BookStatus.AVAILABLE);
+                ProductStatus.AVAILABLE);
 
 
         User user = new User("Raryson", "raryson.rost@gmail.com", "5551986598986",

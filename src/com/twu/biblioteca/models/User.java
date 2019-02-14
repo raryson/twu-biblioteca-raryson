@@ -55,4 +55,8 @@ public class User {
     public UserType getUserType() {
         return userType;
     }
+
+    public void removeBookFromCheckoutBooks(Book searchedBook) {
+        this.checkoutBooks.remove(searchedBook);
+    }
 }

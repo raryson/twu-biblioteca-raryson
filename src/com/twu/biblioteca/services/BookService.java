@@ -1,11 +1,8 @@
 package com.twu.biblioteca.services;
 
-import com.twu.biblioteca.exceptions.BookCheckinException;
-import com.twu.biblioteca.exceptions.BookCheckoutException;
 import com.twu.biblioteca.exceptions.BookNotFoundException;
-import com.twu.biblioteca.helpers.BookStatus;
+import com.twu.biblioteca.helpers.ProductStatus;
 import com.twu.biblioteca.models.Book;
-import com.twu.biblioteca.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,36 +20,17 @@ public class BookService {
     public List<Book> getAllBooks() {
         List<Book> filteredBooks = books.stream()
                 .filter(p -> p.getStatus()
-                        .equals(BookStatus.AVAILABLE))
+                        .equals(ProductStatus.AVAILABLE))
                 .collect(Collectors.toList());
         return filteredBooks;
     };
 
-    private Book findABookByName(String name) throws BookNotFoundException{
+    public Book findABookByName(String name) throws BookNotFoundException{
         Optional<Book> iteredBook = books
                 .stream()
                 .filter(book -> book.getName().equals(name))
                 .findFirst();
         return iteredBook.orElseThrow(() -> new BookNotFoundException());
     }
-
-    public void checkoutABook(String bookName, User user) throws BookCheckoutException, BookNotFoundException {
-        Book searchedBook =  findABookByName(bookName);
-        if(searchedBook.getStatus().equals(BookStatus.RENTED)) {
-            throw new BookCheckoutException();
-        }
-        user.addBookOnCheckoutdBooks(searchedBook);
-        searchedBook.setStatus(BookStatus.RENTED);
-    }
-
-    public void checkingABook(String bookName, User user) throws BookCheckinException, BookNotFoundException {
-        Book searchedBook =  findABookByName(bookName);
-        if(searchedBook.getStatus().equals(BookStatus.AVAILABLE)) {
-            throw new BookCheckinException();
-        }
-        user.addBookOnCheckoutdBooks(searchedBook);
-        searchedBook.setStatus(BookStatus.AVAILABLE);
-    }
-
 
 }

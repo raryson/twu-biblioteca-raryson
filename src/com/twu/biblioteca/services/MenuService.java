@@ -7,6 +7,7 @@ import com.twu.biblioteca.helpers.UserType;
 import com.twu.biblioteca.infra.AuthData;
 import com.twu.biblioteca.infra.BookData;
 import com.twu.biblioteca.infra.MovieData;
+import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.models.MenuItem;
 import com.twu.biblioteca.models.Movie;
 import com.twu.biblioteca.models.User;
@@ -59,7 +60,8 @@ public class MenuService {
                     userInput.nextLine();
                     User user = this.makeLogin(userInput);
                     System.out.println(Messages.enterYourBookToCheckout());
-                    bookService.checkoutABook(userInput.nextLine(), user);
+                    Book book = bookService.findABookByName(userInput.nextLine());
+                    productService.checkout(book, user);
                 } catch (BookCheckoutException ex) {
                     System.out.println(ex.getMessage());
                     break;
@@ -67,9 +69,17 @@ public class MenuService {
                     System.out.println(ex.getMessage());
                     break;
                 } catch (LoginException ex) {
-                    System.out.println(ex);
+                    System.out.println(ex.getMessage());
+                    break;
                 } catch (UserNotFoundException ex) {
-                    System.out.println(ex);
+                    System.out.println(ex.getMessage());
+                    break;
+                } catch (CheckoutException e) {
+                    System.out.println(e.getMessage());
+                    break;
+                } catch (ProductNotFoundException e) {
+                    System.out.println(e.getMessage());
+                    break;
                 }
                 System.out.println(Messages.checkoutedABookSucesseful());
                 break;
@@ -80,7 +90,8 @@ public class MenuService {
                     userInput.nextLine();
                     User user = this.makeLogin(userInput);
                     System.out.println(Messages.enterYourBookToCheckin());
-                    bookService.checkingABook(userInput.nextLine(), user);
+                    Book book = bookService.findABookByName(userInput.nextLine());
+                    productService.checking(book, user);
                 } catch (BookCheckinException ex) {
                     System.out.println(ex.getMessage());
                     break;
@@ -89,9 +100,11 @@ public class MenuService {
                     break;
 
                 } catch (LoginException ex) {
-                    System.out.println(ex);
+                    System.out.println(ex.getMessage());
+                    break;
                 } catch (UserNotFoundException ex) {
-                    System.out.println(ex);
+                    System.out.println(ex.getMessage());
+                    break;
                 }
                 System.out.println(Messages.checkinedBookSucesseful());
                 break;

@@ -1,10 +1,10 @@
 package com.twu.biblioteca.models;
 
-import com.twu.biblioteca.helpers.BookStatus;
+import com.twu.biblioteca.helpers.ProductStatus;
 
-public class Book {
+public class Book extends Product {
 
-    public Book(String name, String author, String publishDate, BookStatus status){
+    public Book(String name, String author, String publishDate, ProductStatus status){
         this.name = name;
         this.author = author;
         this.publishDate = publishDate;
@@ -14,7 +14,6 @@ public class Book {
     private String author;
     private String publishDate;
     private String name;
-    private BookStatus status;
 
     public String getAuthor() {
         return author;
@@ -26,13 +25,5 @@ public class Book {
 
     public String getName() {
         return name;
-    }
-
-    public BookStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(BookStatus status) {
-        this.status = status;
     }
 }
